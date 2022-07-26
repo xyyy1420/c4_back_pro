@@ -15,7 +15,7 @@ class SystemInfo():
 
         # self.info_dict=self.info_update()
 
-        self.start_update()
+        # self.start_update()
 
 
     
@@ -31,7 +31,6 @@ class SystemInfo():
         return interfaces,recv,sent
 
     def get_network_rate(self,num,multiple):#multiple为1024时输出单位为K/S
-        time.sleep(num)
         interface,new_recv,new_sent=self.get_network_info()
         interface=self.interface
         network_in={}
