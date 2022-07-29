@@ -212,5 +212,3 @@ class LogReceive(object):
 
             }
             print(final_msg)
-
-    # TODO:7/29 完成这部分，参考simple_icmp.py
