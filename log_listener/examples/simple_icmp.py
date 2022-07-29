@@ -67,14 +67,14 @@ def main():
             #more_fragments = bool(ip.off & dpkt.ip.IP_MF)
             #fragment_offset = ip.off & dpkt.ip.IP_OFFMASK
 
-            msg = msg.alertmsg[0].decode("utf-8")
-            r = re.compile(r'"(.*)"')
-            msg = r.match(msg)[1]
-            act = "alert"
-            class1 = ["NMAP SCAN", "UNKNOWN attack", "Attempted DDOS",
-                      "Attempt login", "Generic ICMP event", "TCP connection"]
-            a = random.choice(class1)
-            a = "Geneic ICMP event"
+            # msg = msg.alertmsg[0].decode("utf-8")
+            # r = re.compile(r'"(.*)"')
+            # msg = r.match(msg)[1]
+            # # act = "alert"
+            # class1 = ["NMAP SCAN", "UNKNOWN attack", "Attempted DDOS",
+            #           "Attempt login", "Generic ICMP event", "TCP connection"]
+            # a = random.choice(class1)
+            # a = "Geneic ICMP event"
             classf = None
             if 'attack' in msg:
                 classf = 1
