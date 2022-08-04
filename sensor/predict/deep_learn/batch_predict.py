@@ -5,29 +5,36 @@ from PIL import Image
 from torch.utils.data import DataLoader
 from .vit_model import vit_base_patch16_224_in21k as create_model
 import sys
-from msg_send.post_send import DataSend
 import json
+
+from data_sender.data_send import data_send
+from msg_send.post_send import DataSend
 
 
 class DataAnalysis(object):
 
-    def __init__(self,path):
+    def __init__(self, path):
 
-        self.device=torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device(
+            "cuda:0" if torch.cuda.is_available() else "cpu")
 
-        self.dataset=KddData(path)
+        self.dataset = KddData(path)
 
-        self.test_loder=torch.utils.data.DataLoader(self.dataset.test_dataset)
+        self.test_loder = torch.utils.data.DataLoader(
+            self.dataset.test_dataset)
 
-        self.model=create_model(num_classes=2,has_logits=False).to(self.device)
+        self.model = create_model(
+            num_classes=2, has_logits=False).to(self.device)
 
         weights_path = "/home/xxx/from_lin_demo/predict/VIT_weights3.pth"
 
-        assert os.path.exists(weights_path), f"file: '{weights_path}' dose not exist."
+        assert os.path.exists(
+            weights_path), f"file: '{weights_path}' dose not exist."
 
-        self.model.load_state_dict(torch.load(weights_path, map_location=self.device))
+        self.model.load_state_dict(torch.load(
+            weights_path, map_location=self.device))
 
-        self.sender=DataSend()
+        self.sender = DataSend()
 
         # prediction
         self.model.eval()
@@ -36,27 +43,26 @@ class DataAnalysis(object):
     def run_module(self):
 
         with torch.no_grad():
-    #        for i,data in enumerate(test_loder):
-            for data_set_v,data in zip(self.dataset.data_deal_set,self.test_loder):
+            #        for i,data in enumerate(test_loder):
+            for data_set_v, data in zip(self.dataset.data_deal_set, self.test_loder):
                 # predict class
                 data = torch.stack(data, dim=1)
-                data=torch.squeeze(data,1)
+                data = torch.squeeze(data, 1)
     #            print(data.shape)
                 output = self.model(data.to(self.device))
                 # predict = torch.softmax(output, dim=1)
                 probs, classes = torch.max(output, dim=1)
 
-                info_dict={"src_ip":data_set_v[1],"dst_ip":data_set_v[2],"src_port":data_set_v[3],"dst_port":data_set_v[4],"timestamp":data_set_v[6],"attack":classes[0].item()}
+                info_dict = {"src_ip": data_set_v[1], "dst_ip": data_set_v[2], "src_port": data_set_v[3],
+                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "attack": classes[0].item()}
 
                 print(classes)
-                self.sender.send_data(info_dict)#DONE:完成msg调试填入
+                self.sender.send_data(info_dict)  # TODO:完成msg调试填入
 
                 # print(data_set_v[1],probs,classes)
 
 
-
-
-#def main(path):
+# def main(path):
 #    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #    print(device)
 #    dataset=KddData(path)
@@ -76,13 +82,13 @@ class DataAnalysis(object):
 #    model.eval()
 #    # batch_size = 8  # 每次预测时将多少张图片打包成一个batch
 #    with torch.no_grad():
-##        for i,data in enumerate(test_loder):
+# for i,data in enumerate(test_loder):
 #        for data_set_v,data in zip(dataset.data_deal_set,test_loder):
 #            # predict class
 #
 #            data = torch.stack(data, dim=1)
 #            data=torch.squeeze(data,1)
-##            print(data.shape)
+# print(data.shape)
 #            output = model(data.to(device))
 #            # predict = torch.softmax(output, dim=1)
 #            probs, classes = torch.max(output, dim=1)
@@ -91,7 +97,7 @@ class DataAnalysis(object):
 #
 #
 #
-#DONE：在这里删除下面的测试部分 ，已注释
+# DONE：在这里删除下面的测试部分 ，已注释
 # if __name__ == '__main__':
 #     path=sys.argv[1]
 #     data=DataAnalysis(path)

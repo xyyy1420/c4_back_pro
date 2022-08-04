@@ -10,11 +10,21 @@ from deep_learn.batch_predict import DataAnalysis
 
 
 class DeepLearnControl():
-    def __init__(self, aim_path, id) -> None:
-        self.aim_path = aim_path
-        self.file_monitor = FileEventHandler(id)
+    def __init__(self, path, id) -> None:
+        self.id = id
+        self.aim_path = path['log_path']
+        self.csv_path = path['csv_path']
+        self.file_monitor = FileEventHandler(
+            self.aim_path, self.csv_path, self.id)
         self.observer = Observer()
         self.observer.schedule(self.file_monitor, self.aim_path, False)
 
-    def create_monitor(self, aim_path):
+    def start(self, aim_path):
+        self.observer.start()
+        self.observer.join()
+
+    def stop(self):
         pass
+    # TODO:完成stop的功能
+
+        # TODO:完成deeplearn的实际测试

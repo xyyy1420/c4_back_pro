@@ -201,6 +201,10 @@ class SensorController(object):
     #     self.md5.update(str_value.encode('utf-8'))
     #     return self.md5.hexdigest()
 
+
+# TODO：完成错误返回的部分，处理update与stop部分
+
+
 # sid
 # priority
 # classtype

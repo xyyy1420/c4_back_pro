@@ -4,7 +4,7 @@ from watchdog.events import FileSystemEventHandler
 from multiprocessing import Queue, Process
 import logging
 import sys
-from predict.batch_predict import DataAnalysis
+from deep_learn.batch_predict import DataAnalysis
 import re
 import subprocess
 from std_trash import suppress_stdout_stderr
@@ -12,8 +12,10 @@ import os
 
 
 class FileEventHandler(FileSystemEventHandler):
-    def __init__(self, id):
+    def __init__(self, aim_path, csv_path, id):
         self.id = id
+        self.aim_path = aim_path
+        self.csv_path = csv_path
         # file_pattern = r'\/home\/xxx\/snort_log\/(.*)'
         # self.file_patt_rule = re.compile(file_pattern)
         self.act_file = None
@@ -31,15 +33,15 @@ class FileEventHandler(FileSystemEventHandler):
 
         logging.info("文件创建触发")
 
-        output_name = self.file_patt_rule.match(file_name)[1]
-        if output_name != None:
-            logging.info("文件名已分割"+output_name[1])
-            output_name = output_name[1]
-        print(output_name)
+        # output_name = self.file_patt_rule.match(file_name)[1]
+        # if output_name != None:
+        #     logging.info("文件名已分割"+output_name[1])
+        #     output_name = output_name[1]
+        # print(output_name)
         # cicflow=Process(target=run_cicflow,args=(file_name,"/home/xxx/flow_dir/"+output_name+".csv"))
         # cicflow.start()
 
-        run_cicflow(file_name, "/home/xxx/flow_dir/"+output_name+".csv")
+        run_cicflow(file_name, self.csv_path+self.id+".csv")
         # print(file_name)
 
 
@@ -94,23 +96,23 @@ def run_analysis(path):
     module.join()
 
 
-if __name__ == '__main__':
-    LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+# if __name__ == '__main__':
+#     LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 
-    logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+#     logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
-    observer = Observer()  # 创建观察者对象
-    file_handler = MyEventHandler()  # 创建事件处理对象
+#     observer = Observer()  # 创建观察者对象
+#     file_handler = MyEventHandler()  # 创建事件处理对象
 
-    aim_path = sys.argv[1] if len(sys.argv) > 1 else '.'
+#     aim_path = sys.argv[1] if len(sys.argv) > 1 else '.'
 
-    observer.schedule(file_handler, aim_path, False)  # 向观察者对象绑定事件和目录
+#     observer.schedule(file_handler, aim_path, False)  # 向观察者对象绑定事件和目录
 
-    observer.start()  # 启动
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-    observer, daemon = True
-    observer.join()  # 阻塞主线程，直到observer结束
+#     observer.start()  # 启动
+#     try:
+#         while True:
+#             time.sleep(1)
+#     except KeyboardInterrupt:
+#         observer.stop()
+#     observer, daemon = True
+#     observer.join()  # 阻塞主线程，直到observer结束

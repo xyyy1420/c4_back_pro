@@ -35,7 +35,7 @@ class Sensor(object):
 
         self.sensor = SensorController(self.path, data)
 
-        self.deep_learn_control = DeepLearnControl()
+        self.deep_learn_control = DeepLearnControl(self.path, id)
 
         self.deep_learn = 'deep_learn'
 
@@ -52,6 +52,9 @@ class Sensor(object):
         self.process_pool.update("log_pro", log_pro)
         self.sensor.start_sensor()  # TODO:需要判断是否成功
 
+        self.deep_learn_control.start()
+        # TODO：需要判断是否成功
+
     def reload():
         pass
 
@@ -64,3 +67,5 @@ class Sensor(object):
 
     def send_log():
         log_sender()
+
+        # TODO:改为data sender
