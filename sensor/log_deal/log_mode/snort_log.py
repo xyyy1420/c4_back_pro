@@ -12,7 +12,11 @@ class LogReceive(object):
             format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
         self.protocol = {'1': "ICMP", '2': "IGMP", '3': "GGP",
-                         '4': "IPv6", '5': "ST", '6': "TCP", '17': "UDP"}
+                         '4': "IPv6", '5': "ST", '6': "TCP",
+                         '7': "CBT", '8': "EGP", '9': "IGP",
+                         '17': "UDP", '41': "IPv6", '43': "IPv6-Route",
+                         '44': "IPv6-Frag", '58': "IPv6-ICMP", '59': "IPv6-NoNxt",
+                         '60': "IPv6-Opts", }
 
         self.classtype = {
             '1': {"name": 'not-suspicious', "priority": 3,
@@ -154,9 +158,9 @@ class LogReceive(object):
             # if parsed_msg := alert.AlertPkt.parser(data):
             #   yield parsed_msg
 
-    def get_msg(self):
+    def get_msg(self, path="/home/jxy/snort_log/snort_alert"):
 
-        for msg in self.recv_msg():
+        for msg in self.recv_msg(path):
             buf = msg.pkt
             sig_id = msg.event.sig_id
             sig_rev = msg.event.sig_rev
@@ -211,4 +215,5 @@ class LogReceive(object):
                 'attack': 1
 
             }
-            print(final_msg)
+
+            yield(final_msg)  # TODO:改为回送结果

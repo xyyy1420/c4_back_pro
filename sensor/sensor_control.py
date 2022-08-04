@@ -5,33 +5,40 @@ import socket
 import logging
 
 
-class Sensor(object):
-    def __init__(self) -> None:
+class SensorController(object):
+    def __init__(self, path, data) -> None:
 
-        self.thread_pool = []
-        self.md5 = hashlib.md5()
+        # self.thread_pool = []
+        # self.md5 = hashlib.md5()
 
         self.test_cmd = 'snort -c %s -R %s '
         self.ids_pcap_cmd = 'snort -c %s -r %s -l %s -m 066 '
         self.ids_interface_cmd = 'snort -c %s -i %s -l %s -m 066 '
 
-        self.base_rule_path = '/usr/local/snort/rule/'
+        self.log_path = path['log_path']
+        self.rule_path = path['rule_path']
+        self.config_path = path['config_path']
+        self.rule_file = os.path.join(self.rule_path, data['rule_file'])
+
+        # self.base_rule_path = '/usr/local/snort/rule/'
 
         self.deep_learn_rule = os.path.join(
             self.base_rule_path, 'deep_learn.rules')
 
-        self.log_path_base = {
-            "ids_pcap_log_path": '/usr/local/snort/log/pcap/',
-            "ids_deep_learn_log_path": '/usr/local/snort/log/deep/',
-            "ips_deep_learn_log_path": '/usr/local/snort/log/deep/',
-            "ids_interface_log_path": '/usr/local/snort/log/interface/',
-            "ips_interface_log_path": '/usr/local/snort/log/interface/'
-        }
+        # self.log_path_base = {
+        #     "ids_pcap_log_path": '/usr/local/snort/log/pcap/',
+        #     "ids_deep_learn_log_path": '/usr/local/snort/log/deep/',
+        #     "ips_deep_learn_log_path": '/usr/local/snort/log/deep/',
+        #     "ids_interface_log_path": '/usr/local/snort/log/interface/',
+        #     "ips_interface_log_path": '/usr/local/snort/log/interface/'
+        # }
 
         self.base_config_path = '/usr/local/snort/etc/snort/snort.lua'
 
         self.reload_signal = 1
         self.shutdown_signal = 2
+
+        self.control_hook = None
 
         # self.rule_path_base = {
         #     "ids_pcap_rule_path": '/usr/local/snort/rule/pcap/',
@@ -68,73 +75,64 @@ class Sensor(object):
 
         mode = args['mode']
 
-        log_file = args['log_file']
-        rule_file = args['rule_file']
+        # log_file = args['log_file']
+        # rule_file = args['rule_file']
         interface = args['interface']
 
-        name = args['name']
-        description = args['description']
-        sensor_md5 = self.hash_cal(name+description)
+        # name = args['name']
+        # description = args['description']
+        # sensor_md5 = self.hash_cal(name+description)
 
         if mode == 'pcap_ids':
             pcap_path = args['pcap_path']
-            rule_path = os.path.join(self.base_rule_path, rule_file)
+            # rule_path = os.path.join(self.base_rule_path, rule_file)
 
-            base_cmd = f"snort -c {self.base_config_path} -l {os.path.join(self.log_path_base['ids_pcap_log_path'],log_file,'/')} -r {pcap_path} -R {rule_path}"
-            self.pcap_ids_start(base_cmd, sensor_md5)
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -r {pcap_path} -R {self.rule_file}"
+            self.control_hook = self.pcap_ids_start(base_cmd)
 
         elif mode == 'interface_ids':
-            rule_path = os.path.join(self.base_rule_path, rule_file)
-            base_cmd = f"snort -c {self.base_config_path} -l {os.path.join(self.log_path_base['ids_interface_log_path'],log_file,'/')} -i {interface} -R {rule_path}"
-            self.interface_ids_start(base_cmd, sensor_md5)
+            # rule_path = os.path.join(self.base_rule_path, rule_file)
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
+            self.control_hook = self.interface_ids_start(base_cmd)
 
         elif mode == 'interface_ips':
-            rule_path = os.path.join(self.base_rule_path, rule_file)
-            base_cmd = f"snort -c {self.base_config_path} -l {os.path.join(self.log_path_base['ips_interface_log_path'],log_file,'/')} -i {interface} -R {rule_path}"
-            self.interface_ips_start(base_cmd, sensor_md5)
+            # rule_path = os.path.join(self.base_rule_path, rule_file)
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
+            self.control_hook = self.interface_ips_start(base_cmd)
         elif mode == 'deep_learn_ids':
             rule_path = self.deep_learn_rule
-            base_cmd = f"snort -c {self.base_config_path} -l {os.path.join(self.log_path_base['ids_deep_learn_log_path'],log_file,'/')} -i {interface} -R {rule_path}"
-            self.deep_learn_ids_start(base_cmd, sensor_md5)
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {rule_path}"
+            self.control_hook = self.deep_learn_ids_start(base_cmd)
 
-    def pcap_ids_start(self, cmd, hash_value):
+    def pcap_ids_start(self, cmd):
         res = Popen(cmd, shell=True)
         if res.poll() != 0:
-            self.thread_pool.append({hash_value, res})
+            return res
         else:
-            print('error')
+            return -1
 
-    def interface_ids_start(self, cmd, hash_value):
+    def interface_ids_start(self, cmd):
         res = Popen(cmd, shell=True)
         if res.poll() != 0:
-            self.thread_pool.append({hash_value, res})
+            return res
         else:
-            print('error')
+            return -1
 
-    def interface_ips_start(self, cmd, hash_value):
+    def interface_ips_start(self, cmd):
         res = Popen(cmd, shell=True)
         if res.poll() != 0:
-            self.thread_pool.append({hash_value, res})
+            return res
         else:
-            print('error')
+            return -1
 
-    def deep_learn_ids_start(self, cmd, hash_value):
+    def deep_learn_ids_start(self, cmd):
         res = Popen(cmd, shell=True)
         if res.poll() != 0:
-            self.thread_pool.append({hash_value, res})
+            return res
         else:
-            print('error')
+            return -1
 
     # TODO:change mode to operate :(start,stop,update) need:(name,description,and other args)
-    def operate_deal(self, **args):
-        operater = args['operater']
-
-        if operater == 'start':
-            self.start_sensor(args)
-        elif operater == 'update':
-            self.update_sensor(args)
-        elif operater == 'stop':
-            self.stop_sensor(args)
 
     def stop_sensor(self, **args):
         name = args['name']
@@ -199,9 +197,9 @@ class Sensor(object):
 
         return res.poll()
 
-    def hash_cal(self, str_value):
-        self.md5.update(str_value.encode('utf-8'))
-        return self.md5.hexdigest()
+    # def hash_cal(self, str_value):
+    #     self.md5.update(str_value.encode('utf-8'))
+    #     return self.md5.hexdigest()
 
 # sid
 # priority
