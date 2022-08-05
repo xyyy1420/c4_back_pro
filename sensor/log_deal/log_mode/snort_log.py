@@ -8,8 +8,6 @@ import time
 
 class LogReceive(object):
     def __init__(self) -> None:
-        logging.basicConfig(
-            format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
         self.protocol = {'1': "ICMP", '2': "IGMP", '3': "GGP",
                          '4': "IPv6", '5': "ST", '6': "TCP",
