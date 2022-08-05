@@ -9,7 +9,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from multiprocessing import Queue, Process
 from ..deep_learn.batch_predict import DataAnalysis
-from std_trash import suppress_stdout_stderr
+from .std_trash import suppress_stdout_stderr
 
 
 class FileEventHandler(FileSystemEventHandler):
