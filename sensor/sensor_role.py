@@ -62,8 +62,7 @@ class Sensor(object):
         self.process_pool = {}
 
     def start(self):
-        log_pro = Process(target=self.snort_log.get_msg,
-                          args=(os.path.join(self.path['log_path'], 'snort_alert')),)
+        log_pro = Process(target=self.snort_log.get_msg)
 
         log_pro.start()
         log_pro.join()

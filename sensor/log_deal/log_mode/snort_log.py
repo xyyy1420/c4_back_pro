@@ -158,7 +158,7 @@ class LogReceive(object):
             # if parsed_msg := alert.AlertPkt.parser(data):
             #   yield parsed_msg
 
-    def get_msg(self, path="/home/jxy/snort_log/snort_alert"):
+    def get_msg(self):
 
         for msg in self.recv_msg():
             buf = msg.pkt
