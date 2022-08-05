@@ -16,7 +16,7 @@ from sensor.sensor_role import Sensor
 
 if __name__ == '__main__':
     data = {
-        'id': 1001,
+        'id': '1001',
 
     }
     role = Sensor(data)
