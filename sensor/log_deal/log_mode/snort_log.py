@@ -157,6 +157,7 @@ class LogReceive(object):
             parsed_msg = alert.AlertPkt.parser(data)
             if parsed_msg:
                 target = Thread(target=self.get_msg, args=(parsed_msg))
+                target.start()
                 # yield parsed_msg
         # if parsed_msg := alert.AlertPkt.parser(data):
         #   yield parsed_msg
