@@ -81,12 +81,19 @@ class Sensor(object):
 
     def load_deep_learn(self):
         self.deep_learn_control.start()
-        logging.info("DeepLearn mode start")
+        if self.deep_learn_control.is_alive():
+            logging.info("DeepLearn mode start")
+        else:
+            logging.error("DeepLearn mode start error")
         # TODO：需要判断是否成功
 
     def load_log_deal(self):
         log_pro = Process(target=self.snort_log.get_msg)
         log_pro.start()
+        if log_pro.is_alive():
+            logging.info("Log listener start")
+        else:
+            logging.error("Log listener start error")
         log_pro.join()
         self.process_pool.update({"log_pro": log_pro})
         logging.info("Logging mode create , start listening...")
@@ -96,7 +103,7 @@ class Sensor(object):
 
     def stop(self):
         self.sensor.stop_sensor()
-        self.process_pool["log_pro"].close()
+        self.process_pool["log_pro"].kill()
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()
 
