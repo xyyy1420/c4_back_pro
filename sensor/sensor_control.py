@@ -78,35 +78,35 @@ class SensorController(object):
 
     def pcap_ids_start(self, cmd):
         logging.warn(cmd)
-        # res = Popen(cmd, shell=True)
-        # if res.poll() != 0:
-        #     return res
-        # else:
-        #     return -1
+        res = Popen(cmd, shell=True)
+        if res.poll() != 0:
+            return res
+        else:
+            return -1
 
     def interface_ids_start(self, cmd):
         logging.warn(cmd)
-        # res = Popen(cmd, shell=True)
-        # if res.poll() != 0:
-        #     return res
-        # else:
-        #     return -1
+        res = Popen(cmd, shell=True)
+        if res.poll() != 0:
+            return res
+        else:
+            return -1
 
     def interface_ips_start(self, cmd):
         logging.warn(cmd)
-        # res = Popen(cmd, shell=True)
-        # if res.poll() != 0:
-        #     return res
-        # else:
-        #     return -1
+        res = Popen(cmd, shell=True)
+        if res.poll() != 0:
+            return res
+        else:
+            return -1
 
     def deep_learn_ids_start(self, cmd):
         logging.warn(cmd)
-        # res = Popen(cmd, shell=True)
-        # if res.poll() != 0:
-        #     return res
-        # else:
-        #     return -1
+        res = Popen(cmd, shell=True)
+        if res.poll() != 0:
+            return res
+        else:
+            return -1
 
     # TODO:change mode to operate :(start,stop,update) need:(name,description,and other args)
 
@@ -127,7 +127,7 @@ class SensorController(object):
         #     print("error,thread not fount")
         #     return
 
-        self.control_hook.send_singal(self.shutdown_signal)
+        self.control_hook.send_signal(self.shutdown_signal)
         if self.control_hook.poll() != 0:
             return 1
         else:
