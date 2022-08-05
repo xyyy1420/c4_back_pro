@@ -8,10 +8,10 @@ def create_new_path(base_path, sensor_id):
     rule_path = os.path.join(finall_path, 'rules')
     csv_path = os.path.join(finall_path, 'csvs')
 
-    os.makedirs(finall_path.decode('utf-8'))
-    os.makedirs(log_path.decode('utf-8'))
-    os.makedirs(rule_path.decode('utf-8'))
-    os.makedirs(csv_path.decode('utf-8'))
+    os.makedirs(finall_path)
+    os.makedirs(log_path)
+    os.makedirs(rule_path)
+    os.makedirs(csv_path)
 
     return {
         "sensor_path": finall_path,
