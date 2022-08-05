@@ -17,7 +17,7 @@ class SensorController(object):
 
         self.log_path = path['log_path']
         self.rule_path = path['rule_path']
-        self.config_path = path['config_path']
+        # self.config_path = path['config_path']
         self.rule_file = os.path.join(self.rule_path, data['rule_file'])
 
         # self.base_rule_path = '/usr/local/snort/rule/'

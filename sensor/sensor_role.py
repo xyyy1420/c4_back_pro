@@ -27,12 +27,15 @@ class Sensor(object):
         # "sensor_path",
         # "log_path",
         # "rule_path"
+        self.data = data
         base_path = '/home/jxy/final_test/'
         # base_path
         # id
-        self.id = data['id']
+        self.id = self.data['id']
         self.path = create_new_path(base_path, self.id)
         logging.info("path create {base_path+self.id}")
+        self.data.update({"log_path": self.path['log_path']})
+        self.data.update({"rule_path": self.path['rule_path']})
         self.snort_log = LogReceive()
 
         self.sensor = SensorController(self.path, data)
