@@ -96,7 +96,7 @@ class Sensor(object):
 
     def stop(self):
         self.sensor.stop_sensor()
-        self.process.pool["log_pro"].close()
+        self.process_pool["log_pro"].close()
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()
 
