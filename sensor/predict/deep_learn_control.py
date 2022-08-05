@@ -21,7 +21,7 @@ class DeepLearnControl():
 
         logging.info("file montior create")
 
-    def start(self, aim_path):
+    def start(self):
         self.observer.start()
         self.observer.join()
 
