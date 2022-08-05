@@ -20,7 +20,7 @@ class SensorController(object):
         # self.config_path = path['config_path']
         self.rule_file = os.path.join(self.rule_path, data['rule_file'])
 
-        # self.base_rule_path = '/usr/local/snort/rule/'
+        self.base_rule_path = '/usr/local/snort/rule/'
 
         self.deep_learn_rule = os.path.join(
             self.base_rule_path, 'deep_learn.rules')
