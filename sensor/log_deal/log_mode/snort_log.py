@@ -147,6 +147,7 @@ class LogReceive(object):
 
         unsock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
 
+        logging.info(f"{sockf}")
         unsock.bind(sockf)
         logging.warning('unix socket start listening...')
 
@@ -216,4 +217,4 @@ class LogReceive(object):
 
             }
 
-            yield(final_msg)  # TODO:改为回送结果
+            print(final_msg)  # TODO:改为回送结果
