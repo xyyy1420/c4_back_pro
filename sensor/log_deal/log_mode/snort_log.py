@@ -4,6 +4,7 @@ import logging
 from snortunsock import alert
 import dpkt
 import time
+from threading import Thread
 
 
 class LogReceive(object):
@@ -155,83 +156,68 @@ class LogReceive(object):
             data = unsock.recv(BUFSIZE)
             parsed_msg = alert.AlertPkt.parser(data)
             if parsed_msg:
-                yield parsed_msg
-            # if parsed_msg := alert.AlertPkt.parser(data):
-            #   yield parsed_msg
-
-    def get_msg(self):
-        BUFSIZE = alert.AlertPkt._ALERTPKT_SIZE
-        sockf = self.socket_file
-        # DONE:需要设置这个每个log目录下的sock
-
-        if os.path.exists(sockf):
-            os.unlink(sockf)
-
-        unsock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-
-        logging.info(f"{sockf}")
-        unsock.bind(sockf)
-        logging.warning('unix socket start listening...')
-
-        while True:
-            data = unsock.recv(BUFSIZE)
-            msg = alert.AlertPkt.parser(data)
-            if msg:
+                target = Thread(target=self.get_msg, args=(parsed_msg))
                 # yield parsed_msg
-                # for msg in self.recv_msg():
-                buf = msg.pkt
-                sig_id = msg.event.sig_id
-                sig_rev = msg.event.sig_rev
-                sig_class_type = self.classtype[str(msg.event.classification)]
-                priority = msg.event.priority
-                event_id = msg.event.event_id
-                event_reference = msg.event.event_reference
-                ref_time = msg.event.ref_time
+        # if parsed_msg := alert.AlertPkt.parser(data):
+        #   yield parsed_msg
 
-                alert_message = ''
-                for i in msg.alertmsg[0]:
-                    if i != 0:
-                        alert_message = alert_message+chr(i)
-                    else:
-                        break
+    def get_msg(self, msg):
 
-                eth = dpkt.ethernet.Ethernet(buf)
-                if eth.type != dpkt.ethernet.ETH_TYPE_IP:
-                    print('Non IP Packet type not supported %s\n' %
-                          eth.data.__class__.__name__)
+        # yield parsed_msg
+        # for msg in self.recv_msg():
+        buf = msg.pkt
+        sig_id = msg.event.sig_id
+        sig_rev = msg.event.sig_rev
+        sig_class_type = self.classtype[str(msg.event.classification)]
+        priority = msg.event.priority
+        event_id = msg.event.event_id
+        event_reference = msg.event.event_reference
+        ref_time = msg.event.ref_time
 
-                src_mac_addr = dpkt.utils.mac_to_str(eth.src)
-                dst_mac_addr = dpkt.utils.mac_to_str(eth.dst)
+        alert_message = ''
+        for i in msg.alertmsg[0]:
+            if i != 0:
+                alert_message = alert_message+chr(i)
+            else:
+                break
 
-                ip = eth.data
+        eth = dpkt.ethernet.Ethernet(buf)
+        if eth.type != dpkt.ethernet.ETH_TYPE_IP:
+            print('Non IP Packet type not supported %s\n' %
+                  eth.data.__class__.__name__)
 
-                src_ip = dpkt.utils.inet_to_str(ip.src)
-                dst_ip = dpkt.utils.inet_to_str(ip.dst)
+        src_mac_addr = dpkt.utils.mac_to_str(eth.src)
+        dst_mac_addr = dpkt.utils.mac_to_str(eth.dst)
 
-                if ip.p != 6 or ip.p != 17:
-                    dport = 0
-                    sport = 0
-                else:
-                    dport = ip.data.dport
-                    sport = ip.data.sport
+        ip = eth.data
 
-                rel_time = time.strftime("%Y-%m-%d-%X")
+        src_ip = dpkt.utils.inet_to_str(ip.src)
+        dst_ip = dpkt.utils.inet_to_str(ip.dst)
 
-                final_msg = {
-                    'msg': alert_message,
-                    'sid': sig_id,
-                    'priority': priority,
-                    'class': sig_class_type['name'],
-                    'priority': sig_class_type['priority'],
-                    # 'interface': interface,
-                    'src_addr': src_ip,
-                    'src_port': sport,
-                    'dst_addr': dst_ip,
-                    'dst_port': dport,
-                    'protocol': self.protocol[str(ip.p)],
-                    'timestamp': rel_time,
-                    'attack': 1
+        if ip.p != 6 or ip.p != 17:
+            dport = 0
+            sport = 0
+        else:
+            dport = ip.data.dport
+            sport = ip.data.sport
 
-                }
+        rel_time = time.strftime("%Y-%m-%d-%X")
 
-                print(final_msg)  # TODO:改为回送结果
+        final_msg = {
+            'msg': alert_message,
+            'sid': sig_id,
+            'priority': priority,
+            'class': sig_class_type['name'],
+            'priority': sig_class_type['priority'],
+            # 'interface': interface,
+            'src_addr': src_ip,
+            'src_port': sport,
+            'dst_addr': dst_ip,
+            'dst_port': dport,
+            'protocol': self.protocol[str(ip.p)],
+            'timestamp': rel_time,
+            'attack': 1
+
+        }
+
+        print(final_msg)  # TODO:改为回送结果
