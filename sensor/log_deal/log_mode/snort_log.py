@@ -7,7 +7,9 @@ import time
 
 
 class LogReceive(object):
-    def __init__(self) -> None:
+    def __init__(self, data) -> None:
+
+        self.socket_file = data['sock_file']
 
         self.protocol = {'1': "ICMP", '2': "IGMP", '3': "GGP",
                          '4': "IPv6", '5': "ST", '6': "TCP",
@@ -137,10 +139,8 @@ class LogReceive(object):
     def recv_msg(self, socket_file='/home/jxy/snort_log/snort_alert'):
 
         BUFSIZE = alert.AlertPkt._ALERTPKT_SIZE
-        sockf = socket_file
+        sockf = self.socket_file
         # TODO:需要设置这个每个log目录下的sock
-        if sockf is None:
-            sockf = socket_file
 
         if os.path.exists(sockf):
             os.unlink(sockf)
@@ -159,9 +159,8 @@ class LogReceive(object):
             #   yield parsed_msg
 
     def get_msg(self, path="/home/jxy/snort_log/snort_alert"):
-        logging.info(path)
 
-        for msg in self.recv_msg(path):
+        for msg in self.recv_msg():
             buf = msg.pkt
             sig_id = msg.event.sig_id
             sig_rev = msg.event.sig_rev

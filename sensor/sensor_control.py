@@ -6,7 +6,7 @@ import logging
 
 
 class SensorController(object):
-    def __init__(self, path, data) -> None:
+    def __init__(self, data) -> None:
 
         # self.thread_pool = []
         # self.md5 = hashlib.md5()
@@ -15,8 +15,8 @@ class SensorController(object):
         self.ids_pcap_cmd = 'snort -c %s -r %s -l %s -m 066 '
         self.ids_interface_cmd = 'snort -c %s -i %s -l %s -m 066 '
 
-        self.log_path = path['log_path']
-        self.rule_path = path['rule_path']
+        self.log_path = data['log_path']
+        self.rule_path = data['rule_path']
         self.rule_file = os.path.join(self.rule_path, data['rule_file'])
 
         self.base_rule_path = '/usr/local/snort/rule/'
@@ -55,7 +55,7 @@ class SensorController(object):
 
     # 传参数：new_sensor_args_deal(mode='pcap_ids',name='new sensor',........)
 
-    def start_sensor(self, args):
+    def start_sensor(self):
         # 命令参数解释
         # -c 配置文件
         # -l日志存储目录
@@ -71,32 +71,22 @@ class SensorController(object):
         # interface
         # pcap_path
         #
-
+        args = self.data
         logging.warn(args)
+
         mode = args['mode']
-
-        # log_file = args['log_file']
-        # rule_file = args['rule_file']
         interface = args['interface']
-
-        # name = args['name']
-        # description = args['description']
-        # sensor_md5 = self.hash_cal(name+description)
 
         if mode == 'pcap_ids':
             pcap_path = args['pcap_path']
-            # rule_path = os.path.join(self.base_rule_path, rule_file)
-
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -r {pcap_path} -R {self.rule_file}"
             self.control_hook = self.pcap_ids_start(base_cmd)
 
         elif mode == 'interface_ids':
-            # rule_path = os.path.join(self.base_rule_path, rule_file)
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
             self.control_hook = self.interface_ids_start(base_cmd)
 
         elif mode == 'interface_ips':
-            # rule_path = os.path.join(self.base_rule_path, rule_file)
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
             self.control_hook = self.interface_ips_start(base_cmd)
         elif mode == 'deep_learn_ids':

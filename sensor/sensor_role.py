@@ -34,22 +34,26 @@ class Sensor(object):
         # "sensor_path",
         # "log_path",
         # "rule_path"
+        self.base_path = '/home/jxy/final_test/'
+
         self.data = data
-        logging.info(f"sensor init from data: {data}")
-        base_path = '/home/jxy/final_test/'
-        # base_path
-        # id
-        self.id = self.data['id']
-        self.path = create_new_path(base_path, self.id)
-        logging.info(f"path create {base_path+self.id}")
-        self.data.update({"log_path": self.path['log_path']})
-        self.data.update({"rule_path": self.path['rule_path']})
-        logging.info(f"data update:{data}")
-        self.snort_log = LogReceive()
+        logging.info(f"sensor init from data: {self.data}")
+        self.path = create_new_path(self.base_path, self.data['id'])
 
-        self.sensor = SensorController(self.path, data)
+        for i, v in self.path.items():
+            self.data.update({i: v})
+            logging.info(f"data update key:{i},value:{v}")
+        self.data.update({"sock_file": os.parh.join(
+            self.data['log_path'], "snort_alert")})
 
-        self.deep_learn_control = DeepLearnControl(self.path, id)
+        # self.data.update({"log_path": self.path['log_path']})
+        # self.data.update({"rule_path": self.path['rule_path']})
+        # logging.info(f"data update:{data}")
+        self.snort_log = LogReceive(self.data)
+
+        self.sensor = SensorController(self.data)
+
+        self.deep_learn_control = DeepLearnControl(self.data)
 
         # self.deep_learn = 'deep_learn'
 
@@ -64,7 +68,7 @@ class Sensor(object):
         log_pro.start()
         log_pro.join()
         self.process_pool.update({"log_pro": log_pro})
-        self.sensor.start_sensor(self.data)  # TODO:需要判断是否成功
+        self.sensor.start_sensor()  # TODO:需要判断是否成功
 
         self.deep_learn_control.start()
         # TODO：需要判断是否成功

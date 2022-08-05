@@ -10,10 +10,10 @@ from .deep_learn.batch_predict import DataAnalysis
 
 
 class DeepLearnControl():
-    def __init__(self, path, id) -> None:
-        self.id = id
-        self.aim_path = path['log_path']
-        self.csv_path = path['csv_path']
+    def __init__(self, data) -> None:
+        self.id = data['id']
+        self.aim_path = data['log_path']
+        self.csv_path = data['csv_path']
         self.file_monitor = FileEventHandler(
             self.aim_path, self.csv_path, self.id)
         self.observer = Observer()
