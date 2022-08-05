@@ -1,6 +1,8 @@
 from cmath import log
 import os
 
+# TODO：需要测试文件夹们是否存在，如果存在就不需要创建
+
 
 def create_new_path(base_path, sensor_id):
     finall_path = os.path.join(base_path, sensor_id)

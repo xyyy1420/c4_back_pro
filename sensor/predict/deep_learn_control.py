@@ -19,6 +19,8 @@ class DeepLearnControl():
         self.observer = Observer()
         self.observer.schedule(self.file_monitor, self.aim_path, False)
 
+        logging.info("file montior create")
+
     def start(self, aim_path):
         self.observer.start()
         self.observer.join()

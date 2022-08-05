@@ -17,21 +17,11 @@ class SensorController(object):
 
         self.log_path = path['log_path']
         self.rule_path = path['rule_path']
-        # self.config_path = path['config_path']
         self.rule_file = os.path.join(self.rule_path, data['rule_file'])
 
         self.base_rule_path = '/usr/local/snort/rule/'
-
         self.deep_learn_rule = os.path.join(
             self.base_rule_path, 'deep_learn.rules')
-
-        # self.log_path_base = {
-        #     "ids_pcap_log_path": '/usr/local/snort/log/pcap/',
-        #     "ids_deep_learn_log_path": '/usr/local/snort/log/deep/',
-        #     "ips_deep_learn_log_path": '/usr/local/snort/log/deep/',
-        #     "ids_interface_log_path": '/usr/local/snort/log/interface/',
-        #     "ips_interface_log_path": '/usr/local/snort/log/interface/'
-        # }
 
         self.base_config_path = '/usr/local/snort/etc/snort/snort.lua'
 
@@ -39,6 +29,15 @@ class SensorController(object):
         self.shutdown_signal = 2
 
         self.control_hook = None
+
+        logging.info("sensor controler create")
+        # self.log_path_base = {
+        #     "ids_pcap_log_path": '/usr/local/snort/log/pcap/',
+        #     "ids_deep_learn_log_path": '/usr/local/snort/log/deep/',
+        #     "ips_deep_learn_log_path": '/usr/local/snort/log/deep/',
+        #     "ids_interface_log_path": '/usr/local/snort/log/interface/',
+        #     "ips_interface_log_path": '/usr/local/snort/log/interface/'
+        # }
 
         # self.rule_path_base = {
         #     "ids_pcap_rule_path": '/usr/local/snort/rule/pcap/',
@@ -55,7 +54,6 @@ class SensorController(object):
         # self.ips_interface_log_path = '/usr/local/snort/log/interface/'
 
     # 传参数：new_sensor_args_deal(mode='pcap_ids',name='new sensor',........)
-        logging.info("sensor controler create")
 
     def start_sensor(self, **args):
         # 命令参数解释
