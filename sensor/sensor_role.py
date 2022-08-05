@@ -60,7 +60,7 @@ class Sensor(object):
 
     def start(self):
         if self.data['mode'] != 'deep_learn_ids':
-            target = Thread(target=self.load_log_deal)
+            target = Process(target=self.load_log_deal)
             target.start()
             target.join()
         self.load_sensor()
@@ -87,7 +87,7 @@ class Sensor(object):
 
     def load_log_deal(self):
         # log_pro = Process(target=self.snort_log.get_msg)
-        log_pro = Thread(target=self.snort_log.recv_msg)
+        log_pro = Process(target=self.snort_log.recv_msg)
         print("error")
         log_pro.start()
         if log_pro.is_alive():
