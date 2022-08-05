@@ -12,7 +12,7 @@
 # print(x.get_ip_country())
 
 
-from sensor.sensor_sole import Sensor
+from sensor.sensor_role import Sensor
 
 if __name__ == '__main__':
     data = {
