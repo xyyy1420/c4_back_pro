@@ -64,19 +64,9 @@ class Sensor(object):
         # self.file_monitor = 'file_monitor'
 
     def start(self):
-
-        res = self.sensor.start_sensor()
-
-        if res == -1:
-            logging.error(f"Sensor start error , code:{res}")
-            self.error_close()
-        else:
-            logging.info(f"Sensor start")
-
-        if self.data['mode'] == 'deep_learn_ids':
-            self.load_deep_learn()
-        else:
+        if self.data['mode'] != 'deep_learn_ids':
             self.load_log_deal()
+        self.load_sensor()
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):
@@ -86,6 +76,17 @@ class Sensor(object):
         else:
             logging.error("DeepLearn mode start error")
         # TODO：需要判断是否成功
+
+    def load_sensor(self):
+        res = self.sensor.start_sensor()
+
+        if res == -1:
+            logging.error(f"Sensor start error , code:{res}")
+            self.error_close()
+        else:
+            logging.info("Sensor start")
+
+        self.load_deep_learn()
 
     def load_log_deal(self):
         log_pro = Process(target=self.snort_log.get_msg)
@@ -104,6 +105,8 @@ class Sensor(object):
     def stop(self):
         self.sensor.stop_sensor()
         self.process_pool["log_pro"].terminate()
+        if self.process_pool['log_pro'].is_alive():
+            logging.error("Log mode can not stop")
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()
             if self.deep_learn_control.is_alive() == False:
