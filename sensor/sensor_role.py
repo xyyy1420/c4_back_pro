@@ -60,7 +60,7 @@ class Sensor(object):
 
     def start(self):
         if self.data['mode'] != 'deep_learn_ids':
-            target = Thread(self.load_log_deal)
+            target = Thread(target=self.load_log_deal)
             target.start()
             target.join()
         self.load_sensor()
