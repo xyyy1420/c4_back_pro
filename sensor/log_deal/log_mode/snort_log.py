@@ -132,7 +132,9 @@ class LogReceive(object):
 
             '38': {"name": 'client-side-exploit', "priority": 1,
                    "text": 'Known client side exploit attempt'}
+
         }
+        logging.info("log receive create")
 
     def recv_msg(self, socket_file='/home/jxy/snort_log/snort_alert'):
 

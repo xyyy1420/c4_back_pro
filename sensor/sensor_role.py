@@ -30,10 +30,10 @@ class Sensor(object):
         # id
         self.id = data['id']
         self.path = create_new_path(base_path, self.id)
+        logging.info("path create", base_path+self.id)
+        self.snort_log = LogReceive()
 
-        # self.snort_log = LogReceive()
-
-        # self.sensor = SensorController(self.path, data)
+        self.sensor = SensorController(self.path, data)
 
         # self.deep_learn_control = DeepLearnControl(self.path, id)
 

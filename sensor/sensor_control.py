@@ -55,6 +55,7 @@ class SensorController(object):
         # self.ips_interface_log_path = '/usr/local/snort/log/interface/'
 
     # 传参数：new_sensor_args_deal(mode='pcap_ids',name='new sensor',........)
+        logging.info("sensor controler create")
 
     def start_sensor(self, **args):
         # 命令参数解释
