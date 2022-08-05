@@ -8,7 +8,7 @@ import sys
 import json
 
 from data_sender.data_send import data_send
-from msg_send.post_send import DataSend
+# from msg_send.post_send import DataSend
 
 
 class DataAnalysis(object):
@@ -34,7 +34,7 @@ class DataAnalysis(object):
         self.model.load_state_dict(torch.load(
             weights_path, map_location=self.device))
 
-        self.sender = DataSend()
+        # self.sender = DataSend()
 
         # prediction
         self.model.eval()
@@ -56,8 +56,9 @@ class DataAnalysis(object):
                 info_dict = {"src_ip": data_set_v[1], "dst_ip": data_set_v[2], "src_port": data_set_v[3],
                              "dst_port": data_set_v[4], "timestamp": data_set_v[6], "attack": classes[0].item()}
 
-                print(classes)
-                self.sender.send_data(info_dict)  # TODO:完成msg调试填入
+                # print(classes)
+                print(info_dict)
+                # self.sender.send_data(info_dict)  # TODO:完成msg调试填入
 
                 # print(data_set_v[1],probs,classes)
 

@@ -1,14 +1,15 @@
 import time
+import sys
+import logging
+import re
+import os
+
+import subprocess
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from multiprocessing import Queue, Process
-import logging
-import sys
-from deep_learn.batch_predict import DataAnalysis
-import re
-import subprocess
+from ..deep_learn.batch_predict import DataAnalysis
 from std_trash import suppress_stdout_stderr
-import os
 
 
 class FileEventHandler(FileSystemEventHandler):
