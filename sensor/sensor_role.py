@@ -16,11 +16,13 @@ from .sensor_control import SensorController
 from .predict.deep_learn_control import DeepLearnControl
 # id
 
+LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+
 
 class Sensor(object):
     def __init__(self, data) -> None:
-        LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
-        logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
         # "sensor_path",
         # "log_path",
@@ -30,7 +32,7 @@ class Sensor(object):
         # id
         self.id = data['id']
         self.path = create_new_path(base_path, self.id)
-        logging.info("path create", base_path+self.id)
+        logging.info("path create {base_path+self.id}")
         self.snort_log = LogReceive()
 
         self.sensor = SensorController(self.path, data)
