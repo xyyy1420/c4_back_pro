@@ -11,6 +11,7 @@ class SensorController(object):
         # self.thread_pool = []
         # self.md5 = hashlib.md5()
 
+        self.data = data
         self.test_cmd = 'snort -c %s -R %s '
         self.ids_pcap_cmd = 'snort -c %s -r %s -l %s -m 066 '
         self.ids_interface_cmd = 'snort -c %s -i %s -l %s -m 066 '
