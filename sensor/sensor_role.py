@@ -64,7 +64,7 @@ class Sensor(object):
         log_pro.start()
         log_pro.join()
         self.process_pool.update({"log_pro": log_pro})
-        self.sensor.start_sensor()  # TODO:需要判断是否成功
+        self.sensor.start_sensor(self.data)  # TODO:需要判断是否成功
 
         self.deep_learn_control.start()
         # TODO：需要判断是否成功
