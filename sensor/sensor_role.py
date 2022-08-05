@@ -1,12 +1,7 @@
 import logging
-import time
-import sys
 import os
+from threading import Thread
 from multiprocessing import Process
-
-from .predict.file_monitor.file_monitor import FileEventHandler
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 
 
 from .log_deal.log_mode.snort_log import LogReceive
@@ -89,7 +84,9 @@ class Sensor(object):
         self.load_deep_learn()
 
     def load_log_deal(self):
-        log_pro = Process(target=self.snort_log.get_msg)
+        # log_pro = Process(target=self.snort_log.get_msg)
+        log_pro = Thread(target=self.snort_log.get_msg)
+        log_pro.setDaemon(True)
         log_pro.start()
         if log_pro.is_alive():
             logging.info("Log listener start")
