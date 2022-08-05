@@ -59,11 +59,11 @@ class Sensor(object):
         # self.file_monitor = 'file_monitor'
 
     def start(self):
+        self.load_sensor()
         if self.data['mode'] != 'deep_learn_ids':
             target = Process(target=self.load_log_deal)
             target.start()
             target.join()
-        self.load_sensor()
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):
