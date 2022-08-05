@@ -4,9 +4,9 @@ from multiprocessing import Process
 from watchdog.observers import Observer
 
 
-from file_monitor.file_monitor import FileEventHandler
-from file_monitor.std_trash import suppress_stdout_stderr
-from deep_learn.batch_predict import DataAnalysis
+from .file_monitor.file_monitor import FileEventHandler
+from .file_monitor.std_trash import suppress_stdout_stderr
+from .deep_learn.batch_predict import DataAnalysis
 
 
 class DeepLearnControl():
