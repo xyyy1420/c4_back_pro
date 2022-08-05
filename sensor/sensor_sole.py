@@ -25,23 +25,23 @@ class Sensor(object):
         # "sensor_path",
         # "log_path",
         # "rule_path"
-        base_path = '/'
+        base_path = '/home/jxy/final_test/'
         # base_path
         # id
         self.id = data['id']
         self.path = create_new_path(base_path, self.id)
 
-        self.snort_log = LogReceive()
+        # self.snort_log = LogReceive()
 
-        self.sensor = SensorController(self.path, data)
+        # self.sensor = SensorController(self.path, data)
 
-        self.deep_learn_control = DeepLearnControl(self.path, id)
+        # self.deep_learn_control = DeepLearnControl(self.path, id)
 
-        self.deep_learn = 'deep_learn'
+        # self.deep_learn = 'deep_learn'
 
-        self.file_monitor = 'file_monitor'
+        # self.file_monitor = 'file_monitor'
 
-        self.process_pool = {}
+        # self.process_pool = {}
 
     def start(self, data):
         log_pro = Process(target=self.snort_log.get_msg,
