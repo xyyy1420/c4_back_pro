@@ -43,7 +43,7 @@ class Sensor(object):
         for i, v in self.path.items():
             self.data.update({i: v})
             logging.info(f"data update key:{i},value:{v}")
-        self.data.update({"sock_file": os.parh.join(
+        self.data.update({"sock_file": os.path.join(
             self.data['log_path'], "snort_alert")})
 
         # self.data.update({"log_path": self.path['log_path']})
