@@ -4,7 +4,7 @@ import sys
 import os
 from multiprocessing import Process
 
-from .predict.file_monitor import MyEventHandler
+from .predict.file_monitor.file_monitor import FileEventHandler
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
