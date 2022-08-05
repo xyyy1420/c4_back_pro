@@ -103,9 +103,13 @@ class Sensor(object):
 
     def stop(self):
         self.sensor.stop_sensor()
-        self.process_pool["log_pro"].kill()
+        self.process_pool["log_pro"].terminate()
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()
+            if self.deep_learn_control.is_alive() == False:
+                pass
+            else:
+                logging.error("DeepLearn can not stop")
 
         logging.warn("All controller stop")
 
