@@ -20,6 +20,13 @@ LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
+# sensor={
+#     '1001':class
+# }
+# sensor.update({'1001':class})
+# sensor['1001'].start()
+# sensor['1001'].stop()
+
 
 class Sensor(object):
     def __init__(self, data) -> None:

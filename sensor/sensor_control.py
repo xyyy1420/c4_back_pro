@@ -55,7 +55,7 @@ class SensorController(object):
 
     # 传参数：new_sensor_args_deal(mode='pcap_ids',name='new sensor',........)
 
-    def start_sensor(self, **args):
+    def start_sensor(self, args):
         # 命令参数解释
         # -c 配置文件
         # -l日志存储目录
@@ -104,32 +104,36 @@ class SensorController(object):
             self.control_hook = self.deep_learn_ids_start(base_cmd)
 
     def pcap_ids_start(self, cmd):
-        res = Popen(cmd, shell=True)
-        if res.poll() != 0:
-            return res
-        else:
-            return -1
+        logging.warn(cmd)
+        # res = Popen(cmd, shell=True)
+        # if res.poll() != 0:
+        #     return res
+        # else:
+        #     return -1
 
     def interface_ids_start(self, cmd):
-        res = Popen(cmd, shell=True)
-        if res.poll() != 0:
-            return res
-        else:
-            return -1
+        logging.warn(cmd)
+        # res = Popen(cmd, shell=True)
+        # if res.poll() != 0:
+        #     return res
+        # else:
+        #     return -1
 
     def interface_ips_start(self, cmd):
-        res = Popen(cmd, shell=True)
-        if res.poll() != 0:
-            return res
-        else:
-            return -1
+        logging.warn(cmd)
+        # res = Popen(cmd, shell=True)
+        # if res.poll() != 0:
+        #     return res
+        # else:
+        #     return -1
 
     def deep_learn_ids_start(self, cmd):
-        res = Popen(cmd, shell=True)
-        if res.poll() != 0:
-            return res
-        else:
-            return -1
+        logging.warn(cmd)
+        # res = Popen(cmd, shell=True)
+        # if res.poll() != 0:
+        #     return res
+        # else:
+        #     return -1
 
     # TODO:change mode to operate :(start,stop,update) need:(name,description,and other args)
 
