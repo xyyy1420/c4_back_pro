@@ -136,11 +136,11 @@ class LogReceive(object):
         }
         logging.info("log receive create")
 
-    def recv_msg(self, socket_file='/home/jxy/snort_log/snort_alert'):
+    def recv_msg(self):
 
         BUFSIZE = alert.AlertPkt._ALERTPKT_SIZE
         sockf = self.socket_file
-        # TODO:需要设置这个每个log目录下的sock
+        # DONE:需要设置这个每个log目录下的sock
 
         if os.path.exists(sockf):
             os.unlink(sockf)

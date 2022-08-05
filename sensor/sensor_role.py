@@ -45,44 +45,70 @@ class Sensor(object):
             logging.info(f"data update key:{i},value:{v}")
         self.data.update({"sock_file": os.path.join(
             self.data['log_path'], "snort_alert")})
+        self.data.update(
+            {"deep_rule": '/usr/local/snort/rule/deep_learn.rules'})
 
         # self.data.update({"log_path": self.path['log_path']})
         # self.data.update({"rule_path": self.path['rule_path']})
         # logging.info(f"data update:{data}")
+
         self.snort_log = LogReceive(self.data)
 
         self.sensor = SensorController(self.data)
 
         self.deep_learn_control = DeepLearnControl(self.data)
 
+        self.process_pool = {}
         # self.deep_learn = 'deep_learn'
 
         # self.file_monitor = 'file_monitor'
 
-        self.process_pool = {}
-
     def start(self):
-        log_pro = Process(target=self.snort_log.get_msg)
 
+        res = self.sensor.start_sensor()
+
+        if res == -1:
+            logging.error(f"Sensor start error , code:{res}")
+            self.error_close()
+        else:
+            logging.info(f"Sensor start")
+
+        if self.data['mode'] == 'deep_learn_ids':
+            self.load_deep_learn()
+        else:
+            self.load_log_deal()
+        # DONE：需要判断是否成功
+
+    def load_deep_learn(self):
+        self.deep_learn_control.start()
+        logging.info("DeepLearn mode start")
+        # TODO：需要判断是否成功
+
+    def load_log_deal(self):
+        log_pro = Process(target=self.snort_log.get_msg)
         log_pro.start()
         log_pro.join()
         self.process_pool.update({"log_pro": log_pro})
-        self.sensor.start_sensor()  # TODO:需要判断是否成功
+        logging.info("Logging mode create , start listening...")
 
-        self.deep_learn_control.start()
-        # TODO：需要判断是否成功
-
-    def reload():
+    def reload(self):
         pass
 
     def stop(self):
+        self.sensor.stop_sensor()
         self.process.pool["log_pro"].close()
-        # self.sensor.stop_sensor()
+        if self.data['mode'] == 'deep_learn_ids':
+            self.deep_learn_control.stop()
 
-    def delete():
+        logging.warn("All controller stop")
+
+    def delete(self):
         pass
 
-    def send_log():
+    def send_log(self):
         log_sender()
 
         # TODO:改为data sender
+
+    def error_close(self):
+        pass

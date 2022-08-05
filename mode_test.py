@@ -23,6 +23,7 @@ if __name__ == '__main__':
         'interface': 'ens192',
 
 
+
     }
     role = Sensor(data)
     role.start()

@@ -1,7 +1,5 @@
-import hashlib
 import os
 from subprocess import Popen
-import socket
 import logging
 
 
@@ -20,9 +18,10 @@ class SensorController(object):
         self.rule_path = data['rule_path']
         self.rule_file = os.path.join(self.rule_path, data['rule_file'])
 
-        self.base_rule_path = '/usr/local/snort/rule/'
-        self.deep_learn_rule = os.path.join(
-            self.base_rule_path, 'deep_learn.rules')
+        # self.base_rule_path = '/usr/local/snort/rule/'
+        # self.deep_learn_rule = os.path.join(
+        # self.base_rule_path, 'deep_learn.rules')
+        self.deep_learn_rule = self.data['deep_rule']
 
         self.base_config_path = '/usr/local/snort/etc/snort/snort.lua'
 
@@ -31,30 +30,7 @@ class SensorController(object):
 
         self.control_hook = None
 
-        logging.info("sensor controler create")
-        # self.log_path_base = {
-        #     "ids_pcap_log_path": '/usr/local/snort/log/pcap/',
-        #     "ids_deep_learn_log_path": '/usr/local/snort/log/deep/',
-        #     "ips_deep_learn_log_path": '/usr/local/snort/log/deep/',
-        #     "ids_interface_log_path": '/usr/local/snort/log/interface/',
-        #     "ips_interface_log_path": '/usr/local/snort/log/interface/'
-        # }
-
-        # self.rule_path_base = {
-        #     "ids_pcap_rule_path": '/usr/local/snort/rule/pcap/',
-        #     "ids_deep_learn_rule_path": '/usr/local/snort/rule/deep/',
-        #     "ips_deep_learn_rule_path": '/usr/local/snort/rule/deep/',
-        #     "ids_interface_rule_path": '/usr/local/snort/rule/interface/',
-        #     "ips_interface_rule_path": '/usr/local/snort/rule/interface/',
-        # }
-
-        # self.ids_deep_learn_log_path = '/usr/local/snort/log/deep/'
-        # self.ips_deep_learn_log_path = '/usr/local/snort/log/deep/'
-        # self.ids_pcap_log_path = '/usr/local/snort/log/pcap/'
-        # self.ids_interface_log_path = '/usr/local/snort/log/interface/'
-        # self.ips_interface_log_path = '/usr/local/snort/log/interface/'
-
-    # 传参数：new_sensor_args_deal(mode='pcap_ids',name='new sensor',........)
+        logging.info("Sensor controler create")
 
     def start_sensor(self):
         # 命令参数解释
@@ -94,6 +70,11 @@ class SensorController(object):
             rule_path = self.deep_learn_rule
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {rule_path}"
             self.control_hook = self.deep_learn_ids_start(base_cmd)
+
+        if self.control_hook == -1:
+            return -1
+        else:
+            return 1
 
     def pcap_ids_start(self, cmd):
         logging.warn(cmd)
@@ -147,43 +128,10 @@ class SensorController(object):
         #     return
 
         self.control_hook.send_singal(self.shutdown_signal)
-        # self.thread_pool.remove({sensor_md5, thread_control})
-
-    # def stop_update_sensor(self, **args):
-    #     name = args['name']
-    #     description = args['description']
-    #     sensor_md5 = self.hash_cal(name+description)
-
-    #     mode = args['mode']
-
-    #     thread_control = None
-
-    #     for i in self.thread_pool and thread_control is None:
-    #         for md5, res in i.item():
-    #             if md5 == sensor_md5:
-    #                 thread_control = res
-    #                 break
-
-    #     if thread_control is None:
-    #         print("error,thread not fount")
-    #         return
-
-    #     if mode == 'update':
-    #         thread_control.send_singal(self.reload_signal)
-    #     else:
-    #         thread_control.send_singal(self.shutdown_signal)
-    #         self.thread_pool.remove({sensor_md5, thread_control})
-
-    #     if thread_control.poll() != 0:
-    #         if mode == 'update':
-    #             print("thread update")
-    #         else:
-    #             print("thread shutdown failed")
-    #     elif thread_control.poll() == 0:
-    #         if mode == 'shutdown':
-    #             print("thread shutdown")
-    #         else:
-    #             print("update failed thread stop")
+        if self.control_hook.poll() != 0:
+            return 1
+        else:
+            return -1
 
     def test_policy(self, policy_url):
         rule_path = os.path.join(self.base_rule_path, policy_url)
@@ -191,10 +139,6 @@ class SensorController(object):
         res = Popen(local_cmd, shell=True)
 
         return res.poll()
-
-    # def hash_cal(self, str_value):
-    #     self.md5.update(str_value.encode('utf-8'))
-    #     return self.md5.hexdigest()
 
 
 # TODO：完成错误返回的部分，处理update与stop部分
