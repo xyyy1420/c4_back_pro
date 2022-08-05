@@ -72,7 +72,7 @@ class Sensor(object):
 
     def stop(self):
         self.process.pool["log_pro"].close()
-        self.sensor.stop_sensor()
+        # self.sensor.stop_sensor()
 
     def delete():
         pass

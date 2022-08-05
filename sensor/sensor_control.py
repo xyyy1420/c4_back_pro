@@ -72,6 +72,7 @@ class SensorController(object):
         # pcap_path
         #
 
+        logging.warn(args)
         mode = args['mode']
 
         # log_file = args['log_file']
@@ -138,24 +139,24 @@ class SensorController(object):
     # TODO:change mode to operate :(start,stop,update) need:(name,description,and other args)
 
     def stop_sensor(self, **args):
-        name = args['name']
-        description = args['description']
-        sensor_md5 = self.hash_cal(name+description)
+        # name = args['name']
+        # description = args['description']
+        # sensor_md5 = self.hash_cal(name+description)
 
-        thread_control = None
+        # thread_control = None
 
-        for i in self.thread_pool and thread_control is None:
-            for md5, res in i.item():
-                if md5 == sensor_md5:
-                    thread_control = res
-                    break
+        # for i in self.thread_pool and thread_control is None:
+        #     for md5, res in i.item():
+        #         if md5 == sensor_md5:
+        #             thread_control = res
+        #             break
 
-        if thread_control is None:
-            print("error,thread not fount")
-            return
+        # if thread_control is None:
+        #     print("error,thread not fount")
+        #     return
 
-        thread_control.send_singal(self.shutdown_signal)
-        self.thread_pool.remove({sensor_md5, thread_control})
+        self.control_hook.send_singal(self.shutdown_signal)
+        # self.thread_pool.remove({sensor_md5, thread_control})
 
     # def stop_update_sensor(self, **args):
     #     name = args['name']

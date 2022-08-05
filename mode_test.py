@@ -12,12 +12,20 @@
 # print(x.get_ip_country())
 
 
+import logging
 from sensor.sensor_role import Sensor
 
 if __name__ == '__main__':
     data = {
         'id': '1001',
-        'rule_file': '1001.rules'
+        'rule_file': '1001.rules',
+        'mode': 'interface_ids',
+        'interface': 'ens192',
+
 
     }
     role = Sensor(data)
+    role.start()
+    logging.info("start")
+    role.stop()
+    logging.warn("stop")
