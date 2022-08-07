@@ -6,6 +6,7 @@ from torch.utils.data import DataLoader
 from .vit_model import vit_base_patch16_224_in21k as create_model
 import sys
 import json
+import logging
 
 from data_sender.data_send import data_send
 # from msg_send.post_send import DataSend
@@ -26,7 +27,7 @@ class DataAnalysis(object):
         self.model = create_model(
             num_classes=2, has_logits=False).to(self.device)
 
-        weights_path = "/home/xxx/from_lin_demo/predict/VIT_weights3.pth"
+        weights_path = "sensor/predict/deep_learn"
 
         assert os.path.exists(
             weights_path), f"file: '{weights_path}' dose not exist."
@@ -57,7 +58,7 @@ class DataAnalysis(object):
                              "dst_port": data_set_v[4], "timestamp": data_set_v[6], "attack": classes[0].item()}
 
                 # print(classes)
-                print(info_dict)
+                logging.warn(info_dict)
                 # self.sender.send_data(info_dict)  # TODO:完成msg调试填入
 
                 # print(data_set_v[1],probs,classes)
