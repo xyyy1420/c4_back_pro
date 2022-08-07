@@ -137,7 +137,10 @@ class LogReceive(object):
         }
         logging.info("log receive create")
 
-    def recv_msg(self):
+    def recv_msg(self, target):
+        while True:
+            time.sleep(1)
+            print('sleep')
 
         BUFSIZE = alert.AlertPkt._ALERTPKT_SIZE
         sockf = self.socket_file
