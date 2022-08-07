@@ -2,7 +2,7 @@ import logging
 import os
 from threading import Thread
 from multiprocessing import Process
-
+import time
 
 from .log_deal.log_mode.snort_log import LogReceive
 from .log_deal.log_sender import log_sender
@@ -85,7 +85,7 @@ class Sensor(object):
     def load_log_deal(self):
         # log_pro = Process(target=self.snort_log.get_msg)
         log_receive = LogReceive(self.data)
-        log_pro = Process(target=log_receive.recv_msg, args=(1,))
+        log_pro = Process(target=start_loop, args=())
         print("error")
         log_pro.start()
         if log_pro.is_alive():
@@ -123,3 +123,9 @@ class Sensor(object):
 
     def error_close(self):
         pass
+
+
+def start_loop():
+    while True:
+        time.sleep(1)
+        print("sleep")
