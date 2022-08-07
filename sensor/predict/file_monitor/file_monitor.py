@@ -17,8 +17,8 @@ class FileEventHandler(FileSystemEventHandler):
         self.id = id
         self.aim_path = aim_path
         self.csv_path = csv_path
-        # file_pattern = r'\/home\/xxx\/snort_log\/(.*)'
-        # self.file_patt_rule = re.compile(file_pattern)
+        file_pattern = r'.*[0-9]*\/csvs\/(.*)'
+        self.file_patt_rule = re.compile(file_pattern)
         self.act_file = None
         logging.info("file monitor create")
     # 文件移动
@@ -34,15 +34,15 @@ class FileEventHandler(FileSystemEventHandler):
 
         logging.info("文件创建触发\n\n")
 
-        # output_name = self.file_patt_rule.match(file_name)[1]
-        # if output_name != None:
-        #     logging.info("文件名已分割"+output_name[1])
-        #     output_name = output_name[1]
+        output_name = self.file_patt_rule.match(file_name)[1]
+        if output_name != None:
+            logging.info("文件名已分割"+output_name[1])
+            output_name = output_name[1]
         # print(output_name)
         # cicflow=Process(target=run_cicflow,args=(file_name,"/home/xxx/flow_dir/"+output_name+".csv"))
         # cicflow.start()
 
-        run_cicflow(file_name, self.csv_path+self.id+".csv")
+        run_cicflow(file_name, self.csv_path+output_name+".csv")
         # print(file_name)
 
 
@@ -83,7 +83,7 @@ def run_cicflow(input_path, output_path):
 # Done:在这里写关于运行cicflow的部分，使用subprocess库
 
 def analysis(path):
-    logging.info(path)
+    logging.info(path/n/n/n)
     data = DataAnalysis(path)
     logging.info("数据分析.......")
  #   with suppress_stdout_stderr():
