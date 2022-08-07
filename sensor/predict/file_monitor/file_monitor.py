@@ -18,7 +18,7 @@ class FileEventHandler(FileSystemEventHandler):
         self.id = id
         self.aim_path = aim_path
         self.csv_path = csv_path
-        file_pattern = r'.*[0-9]*\/csvs\/(.*)'
+        file_pattern = r'.*[0-9]*\/log\/(.*)'
         self.file_patt_rule = re.compile(file_pattern)
         self.act_file = None
         logging.info("file monitor create")
