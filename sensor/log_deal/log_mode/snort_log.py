@@ -137,7 +137,7 @@ class LogReceive(object):
         }
         logging.info("log receive create")
 
-    def recv_msg(self, target):
+    def recv_msg(self):
         BUFSIZE = alert.AlertPkt._ALERTPKT_SIZE
         sockf = self.socket_file
         # DONE:需要设置这个每个log目录下的sock
