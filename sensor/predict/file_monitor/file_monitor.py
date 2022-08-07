@@ -84,7 +84,7 @@ def run_cicflow(input_path, output_path):
 # Done:在这里写关于运行cicflow的部分，使用subprocess库
 
 def analysis(path):
-    logging.info(path/n/n/n)
+    logging.info(path)
     data = DataAnalysis(path)
     logging.info("数据分析.......")
  #   with suppress_stdout_stderr():
