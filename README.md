@@ -7,7 +7,7 @@
 [ ] 策略管理
 [ ] snort管理
     [x]snort log
-    [ ]多个sensor的目录配置
+    [x]多个sensor的目录配置
 [ ] 日志管理
 [ ] 深度学习管理
 
