@@ -47,7 +47,7 @@ class Sensor(object):
         # self.data.update({"rule_path": self.path['rule_path']})
         # logging.info(f"data update:{data}")
 
-        self.snort_log = LogReceive(self.data)
+        # self.snort_log = LogReceive(self.data)
 
         self.sensor = SensorController(self.data)
 
@@ -84,7 +84,8 @@ class Sensor(object):
 
     def load_log_deal(self):
         # log_pro = Process(target=self.snort_log.get_msg)
-        log_pro = Process(target=self.snort_log.recv_msg, args=(1,))
+        log_receive = LogReceive(self.data)
+        log_pro = Process(log_receive.recv_msg, args=(1,))
         print("error")
         log_pro.start()
         if log_pro.is_alive():
