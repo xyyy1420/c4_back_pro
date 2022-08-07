@@ -85,7 +85,7 @@ class Sensor(object):
     def load_log_deal(self):
         # log_pro = Process(target=self.snort_log.get_msg)
         log_receive = LogReceive(self.data)
-        log_pro = Process(log_receive.recv_msg, args=(1,))
+        log_pro = Process(target=log_receive.recv_msg, args=(1,))
         print("error")
         log_pro.start()
         if log_pro.is_alive():
