@@ -83,7 +83,7 @@ class Sensor(object):
         # self.load_deep_learn()
 
     def load_log_deal(self):
-        log_pro = Process(target=self.snort_log.recv_msg, args=())
+        log_pro = Process(target=self.snort_log.get_msg, args=())
         print("error")
         log_pro.start()
         if log_pro.is_alive():
