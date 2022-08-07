@@ -19,7 +19,7 @@ if __name__ == '__main__':
     data = {
         'id': '1001',
         'rule_file': '1001.rules',
-        'mode': 'interface_ids',
+        'mode': 'deep_learn_ids',
         'interface': 'ens192',
 
 
@@ -28,7 +28,5 @@ if __name__ == '__main__':
     role = Sensor(data)
     role1 = Process(target=role.start, args=())
     role1.start()
+    role1.join()
     logging.info("start")
-    time.sleep(10)
-    role.stop()
-    logging.warn("stop")

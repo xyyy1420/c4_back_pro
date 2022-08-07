@@ -41,7 +41,7 @@ class Sensor(object):
         self.data.update({"sock_file": os.path.join(
             self.data['log_path'], "snort_alert")})
         self.data.update(
-            {"deep_rule": '/usr/local/snort/rule/deep_learn.rules'})
+            {"deep_rule": '/usr/local/snort/rules/deep_learn.rules'})
 
         # self.data.update({"log_path": self.path['log_path']})
         # self.data.update({"rule_path": self.path['rule_path']})
@@ -61,6 +61,9 @@ class Sensor(object):
     def start(self):
         self.load_log_deal()
         self.load_sensor()
+        if self.data['mode'] == 'deep_learn_ids':
+            time.sleep(2)
+            self.load_deep_learn()
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):

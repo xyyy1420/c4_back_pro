@@ -18,6 +18,7 @@ class DeepLearnControl():
 
     def start(self):
         self.observer.start()
+        logging.info("file monitor start")
 
     def stop(self):
         self.observer.stop()
