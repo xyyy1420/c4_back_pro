@@ -51,7 +51,7 @@ class Sensor(object):
 
         self.sensor = SensorController(self.data)
 
-        self.deep_learn_control = DeepLearnControl(self.data)
+        # self.deep_learn_control = DeepLearnControl(self.data)
 
         self.process_pool = {}
         # self.deep_learn = 'deep_learn'
@@ -120,9 +120,3 @@ class Sensor(object):
 
     def error_close(self):
         pass
-
-
-def start_loop():
-    while True:
-        time.sleep(1)
-        print("sleep")

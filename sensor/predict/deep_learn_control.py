@@ -18,7 +18,6 @@ class DeepLearnControl():
 
     def start(self):
         self.observer.start()
-        self.observer.join()
 
     def stop(self):
         self.observer.stop()
