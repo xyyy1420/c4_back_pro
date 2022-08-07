@@ -92,7 +92,6 @@ class Sensor(object):
             logging.info("Log listener start")
         else:
             logging.error("Log listener start error")
-        log_pro.join()
         self.process_pool.update({"log_pro": log_pro})
         logging.info("Logging mode create , start listening...")
 
