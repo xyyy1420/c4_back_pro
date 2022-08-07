@@ -47,7 +47,7 @@ class Sensor(object):
         # self.data.update({"rule_path": self.path['rule_path']})
         # logging.info(f"data update:{data}")
 
-        # self.snort_log = LogReceive(self.data)
+        self.snort_log = LogReceive(self.data)
 
         self.sensor = SensorController(self.data)
 
@@ -83,9 +83,7 @@ class Sensor(object):
         self.load_deep_learn()
 
     def load_log_deal(self):
-        # log_pro = Process(target=self.snort_log.get_msg)
-        log_receive = LogReceive(self.data)
-        log_pro = Process(target=start_loop, args=())
+        log_pro = Process(target=self.snort_log.get_msg, args=())
         print("error")
         log_pro.start()
         if log_pro.is_alive():
