@@ -29,21 +29,21 @@ class FileEventHandler(FileSystemEventHandler):
 
     def on_created(self, event):
         file_name = event.src_path
-        print(file_name, self.act_file)
+        # print(file_name, self.act_file)
         if file_name != self.act_file:
             file_name = self.act_file
 
-        logging.info(f"文件创建触发\n\n{filename}")
+            logging.info(f"文件创建触发 {file_name}")
 
-        output_name = self.file_patt_rule.match(file_name)[1]
-        if output_name != None:
-            logging.info("文件名已分割"+output_name[1])
-            output_name = output_name[1]
-        # print(output_name)
-        # cicflow=Process(target=run_cicflow,args=(file_name,"/home/xxx/flow_dir/"+output_name+".csv"))
-        # cicflow.start()
+            output_name = self.file_patt_rule.match(file_name)[1]
+            if output_name != None:
+                logging.info("文件名已分割"+output_name[1])
+                output_name = output_name[1]
+            # print(output_name)
+            # cicflow=Process(target=run_cicflow,args=(file_name,"/home/xxx/flow_dir/"+output_name+".csv"))
+            # cicflow.start()
 
-        run_cicflow(file_name, self.csv_path+output_name+".csv")
+            run_cicflow(file_name, self.csv_path+output_name+".csv")
         # print(file_name)
 
 
