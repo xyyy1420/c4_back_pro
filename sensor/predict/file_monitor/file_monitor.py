@@ -1,3 +1,4 @@
+from fileinput import filename
 import time
 import sys
 import logging
@@ -32,7 +33,7 @@ class FileEventHandler(FileSystemEventHandler):
         if file_name != self.act_file:
             file_name = self.act_file
 
-        logging.info("文件创建触发\n\n")
+        logging.info(f"文件创建触发\n\n{filename}")
 
         output_name = self.file_patt_rule.match(file_name)[1]
         if output_name != None:
