@@ -220,4 +220,4 @@ class LogReceive(object):
 
         }
 
-        print(final_msg)  # TODO:改为回送结果
+        logging.warn(final_msg)  # TODO:改为回送结果

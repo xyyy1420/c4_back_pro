@@ -80,7 +80,7 @@ class Sensor(object):
         else:
             logging.info("Sensor start")
 
-        self.load_deep_learn()
+        # self.load_deep_learn()
 
     def load_log_deal(self):
         log_pro = Process(target=self.snort_log.get_msg, args=())
