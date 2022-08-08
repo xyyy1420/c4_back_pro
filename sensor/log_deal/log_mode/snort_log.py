@@ -217,7 +217,7 @@ class LogReceive(object):
                 'dst_port': dport,
                 'protocol': self.protocol[str(ip.p)],
                 'timestamp': rel_time,
-                'attack': 1
+                #   'attack': 1
 
             }
             log_sender(
