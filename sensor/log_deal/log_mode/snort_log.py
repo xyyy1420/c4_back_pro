@@ -5,6 +5,7 @@ from snortunsock import alert
 import dpkt
 import time
 from threading import Thread
+from ..log_sender import log_sender
 
 
 class LogReceive(object):
@@ -219,5 +220,6 @@ class LogReceive(object):
                 'attack': 1
 
             }
-
-            logging.warn(final_msg)  # TODO:改为回送结果
+            log_sender(
+                url='http://124.220.161.182:8000/api/insertSnortData', data=final_msg)
+       #      logging.warn(final_msg)  # TODO:改为回送结果

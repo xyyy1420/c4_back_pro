@@ -8,6 +8,8 @@ import sys
 import json
 import logging
 
+from ...log_deal.log_sender import log_sender
+
 from data_sender.data_send import data_send
 # from msg_send.post_send import DataSend
 
@@ -58,7 +60,9 @@ class DataAnalysis(object):
                              "dst_port": data_set_v[4], "timestamp": data_set_v[6], "attack": classes[0].item()}
 
                 # print(classes)
-                logging.warn(info_dict)
+                # logging.warn(info_dict)
+                log_sender(
+                    url='http://124.220.161.182:8000/api/insertToDeepLearn', data=info_dict)
                 # self.sender.send_data(info_dict)  # TODO:完成msg调试填入
 
                 # print(data_set_v[1],probs,classes)
