@@ -43,7 +43,7 @@ class DataAnalysis(object):
         self.model.eval()
         # batch_size = 8  # 每次预测时将多少张图片打包成一个batch
 
-    def run_module(self):
+    def run_module(self, id):
 
         with torch.no_grad():
             #        for i,data in enumerate(test_loder):
@@ -57,7 +57,7 @@ class DataAnalysis(object):
                 probs, classes = torch.max(output, dim=1)
 
                 info_dict = {"src_ip": data_set_v[1], "dst_ip": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "attack": classes[0].item()}
+                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "attack": classes[0].item(), 'id': id}
 
                 # print(classes)
                 # logging.warn(info_dict)

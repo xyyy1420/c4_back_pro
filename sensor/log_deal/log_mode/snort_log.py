@@ -162,8 +162,7 @@ class LogReceive(object):
         # if parsed_msg := alert.AlertPkt.parser(data):
         #   yield parsed_msg
 
-    def get_msg(self):
-
+    def get_msg(self, id):
         # yield parsed_msg
         for msg in self.recv_msg():
             buf = msg.pkt
@@ -217,6 +216,7 @@ class LogReceive(object):
                 'dst_port': dport,
                 'protocol': self.protocol[str(ip.p)],
                 'timestamp': rel_time,
+                'id': id
                 #   'attack': 1
 
             }

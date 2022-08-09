@@ -9,19 +9,11 @@ from .log_deal.log_sender import log_sender
 from .file_mode.file_create import create_new_path
 from .sensor_control import SensorController
 from .predict.deep_learn_control import DeepLearnControl
-# id
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s -%(funcName)s"
 fh = logging.FileHandler('./1.log')
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, filemode=fh)
-
-# sensor={
-#     '1001':class
-# }
-# sensor.update({'1001':class})
-# sensor['1001'].start()
-# sensor['1001'].stop()
 
 
 class Sensor(object):
@@ -55,15 +47,13 @@ class Sensor(object):
         self.deep_learn_control = DeepLearnControl(self.data)
 
         self.process_pool = {}
-        # self.deep_learn = 'deep_learn'
-
-        # self.file_monitor = 'file_monitor'
 
     def start(self):
-        self.load_log_deal()
+        if self.data['mode'] != 'deep_learn_ids':
+            self.load_log_deal()
         self.load_sensor()
         if self.data['mode'] == 'deep_learn_ids':
-            time.sleep(2)
+            time.sleep(1)
             self.load_deep_learn()
         # DONE：需要判断是否成功
 
@@ -87,8 +77,8 @@ class Sensor(object):
         # self.load_deep_learn()
 
     def load_log_deal(self):
-        log_pro = Process(target=self.snort_log.get_msg, args=())
-        print("error")
+        log_pro = Process(target=self.snort_log.get_msg,
+                          args=(self.data['id']))
         log_pro.start()
         if log_pro.is_alive():
             logging.info("Log listener start")
