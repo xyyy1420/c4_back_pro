@@ -59,10 +59,10 @@ class Sensor(object):
 
     def load_deep_learn(self):
         self.deep_learn_control.start()
-        if self.deep_learn_control.is_alive():
-            logging.info("DeepLearn mode start")
-        else:
-            logging.error("DeepLearn mode start error")
+        # if self.deep_learn_control.is_alive():
+        #     logging.info("DeepLearn mode start")
+        # else:
+        #     logging.error("DeepLearn mode start error")
         # TODO：需要判断是否成功
 
     def load_sensor(self):
