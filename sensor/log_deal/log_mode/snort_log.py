@@ -1,7 +1,7 @@
 import os
 import socket
 import logging
-from snortunsock import alert
+from ..snortunsock import alert
 import dpkt
 import time
 from threading import Thread
