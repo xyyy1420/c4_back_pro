@@ -56,13 +56,13 @@ class DataAnalysis(object):
                 # predict = torch.softmax(output, dim=1)
                 probs, classes = torch.max(output, dim=1)
 
-                info_dict = {"src_ip": data_set_v[1], "dst_ip": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "attack": classes[0].item(), 'id': id}
+                info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
+                             "dst_port": data_set_v[4], "date": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id}
 
                 # print(classes)
                 # logging.warn(info_dict)
                 log_sender(
-                    url='http://124.220.161.182:8000/api/insertToDeepLearn', data=info_dict)
+                    url='http://124.220.161.182:8000/data/deeplearn/', data=info_dict)
                 # self.sender.send_data(info_dict)  # TODO:完成msg调试填入
 
                 # print(data_set_v[1],probs,classes)

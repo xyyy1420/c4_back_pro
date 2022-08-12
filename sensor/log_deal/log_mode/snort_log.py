@@ -206,20 +206,20 @@ class LogReceive(object):
             final_msg = {
                 'msg': alert_message,
                 'sid': sig_id,
-                'priority': priority,
-                'class': sig_class_type['name'],
+                #   'priority': priority,
+                'kind': sig_class_type['name'],
                 'priority': sig_class_type['priority'],
                 # 'interface': interface,
                 'src_addr': src_ip,
                 'src_port': sport,
                 'dst_addr': dst_ip,
                 'dst_port': dport,
-                'protocol': self.protocol[str(ip.p)],
-                'timestamp': rel_time,
-                'id': id
+                'proto': self.protocol[str(ip.p)],
+                'date': rel_time,
+                'sensorId': id
                 #   'attack': 1
 
             }
             log_sender(
-                url='http://124.220.161.182:8000/api/insertSnortData', data=final_msg)
+                url='http://124.220.161.182:8000/data/snort/', data=final_msg)
        #      logging.warn(final_msg)  # TODO:改为回送结果
