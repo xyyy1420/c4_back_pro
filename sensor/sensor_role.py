@@ -49,7 +49,7 @@ class Sensor(object):
     def start(self):
         if self.data['mode'] != 'deep_learn_ids':
             self.load_log_deal()
-        self.process_pool.update({"sensor": self.load_sensor()})
+        self.load_sensor()
         if self.data['mode'] == 'deep_learn_ids':
             time.sleep(1)
             self.load_deep_learn()
@@ -71,7 +71,7 @@ class Sensor(object):
             logging.error(f"Sensor start error , code:{res}")
         else:
             logging.info("Sensor start")
-            return res
+            self.process_pool.update({"sensor": res})
 
         # self.load_deep_learn()
 
