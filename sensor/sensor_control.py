@@ -71,6 +71,7 @@ class SensorController(object):
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {rule_path}"
             self.control_hook.append(self.deep_learn_ids_start(base_cmd))
 
+        logging.error(self.control_hook)
         if self.control_hook == -1:
             return -1
         else:
