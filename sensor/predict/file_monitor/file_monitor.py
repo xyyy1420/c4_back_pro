@@ -73,6 +73,7 @@ def cicflow(input_path, output_path, id):
 
 
 def run_cicflow(input_path, output_path, id):
+    logging.info(f"file name {output_path}")
     cic = Process(target=cicflow, args=(input_path, output_path, id))
     cic.start()
     cic.join()
