@@ -28,7 +28,7 @@ class SensorController(object):
         self.reload_signal = 1
         self.shutdown_signal = 2
 
-        self.control_hook = None
+        self.control_hook = []
 
         logging.info("Sensor controler create")
 
@@ -57,19 +57,19 @@ class SensorController(object):
         if mode == 'pcap_ids':
             pcap_path = args['pcap_path']
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -r {pcap_path} -R {self.rule_file}"
-            self.control_hook = self.pcap_ids_start(base_cmd)
+            self.control_hook.append(self.pcap_ids_start(base_cmd))
 
         elif mode == 'interface_ids':
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
-            self.control_hook = self.interface_ids_start(base_cmd)
+            self.control_hook.append(self.interface_ids_start(base_cmd))
 
         elif mode == 'interface_ips':
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
-            self.control_hook = self.interface_ips_start(base_cmd)
+            self.control_hook.append(self.interface_ips_start(base_cmd))
         elif mode == 'deep_learn_ids':
             rule_path = self.deep_learn_rule
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {rule_path}"
-            self.control_hook = self.deep_learn_ids_start(base_cmd)
+            self.control_hook.append(self.deep_learn_ids_start(base_cmd))
 
         if self.control_hook == -1:
             return -1
@@ -127,8 +127,8 @@ class SensorController(object):
         #     print("error,thread not fount")
         #     return
 
-        self.control_hook.send_signal(self.shutdown_signal)
-        if self.control_hook.poll() != 0:
+        self.control_hook[0].send_signal(self.shutdown_signal)
+        if self.control_hook[0].poll() != 0:
             return 1
         else:
             return -1
