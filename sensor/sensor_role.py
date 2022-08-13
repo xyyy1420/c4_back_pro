@@ -1,3 +1,4 @@
+from hashlib import new
 import logging
 import os
 from threading import Thread
@@ -11,9 +12,9 @@ from .sensor_control import SensorController
 from .predict.deep_learn_control import DeepLearnControl
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s -%(funcName)s"
-fh = logging.FileHandler('./1.log')
+# fh = logging.FileHandler('./1.log')
 
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, filemode=fh)
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
 
 class Sensor(object):
@@ -87,30 +88,37 @@ class Sensor(object):
         self.process_pool.update({"log_pro": log_pro})
         logging.info("Logging mode create , start listening...")
 
-    def reload(self):
-        pass
+    def reload(self, data):
+        self.stop()
+        self.data = self.merge_data(self.data, data)
+        self.start()
 
     def stop(self):
         self.sensor.stop_sensor()
+        logging.info("sensor stop")
         self.process_pool["log_pro"].terminate()
         if self.process_pool['log_pro'].is_alive():
             logging.error("Log mode can not stop")
+        else:
+            logging.info("log mode stop")
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()
-            if self.deep_learn_control.is_alive() == False:
-                pass
-            else:
-                logging.error("DeepLearn can not stop")
-
         logging.warn("All controller stop")
 
     def delete(self):
+        # TODO:delete dirs
         pass
-
-    def send_log(self):
-        log_sender()
-
         # TODO:改为data sender
 
-    def error_close(self):
-        pass
+    def merge_data(self, data1, data2):
+        if isinstance(data1, dict) and isinstance(data2, dict):
+            new_dict = {}
+            d2_keys = list(data2.keys())
+            d1_keys = list(data1.keys())
+            for k in d2_keys:
+                if k in d1_keys:
+                    d1_keys.remove(k)
+                    new_dict[k] = data2[k]
+            for i in d1_keys:
+                new_dict[i] = data1[k]
+        return new_dict

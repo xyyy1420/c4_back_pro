@@ -28,5 +28,10 @@ if __name__ == '__main__':
     role = Sensor(data)
     role1 = Process(target=role.start, args=())
     role1.start()
-    role1.join()
     logging.info("start")
+    try:
+        while 1:
+            pass
+    except KeyboardInterrupt:
+        role.stop()
+    logging.info("stop")
