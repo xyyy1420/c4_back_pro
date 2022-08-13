@@ -80,6 +80,7 @@ class SensorController(object):
     def pcap_ids_start(self, cmd):
         logging.warn(cmd)
         res = Popen(cmd, shell=True)
+        return res
         if res.poll() != 0:
             return res
         else:
@@ -88,6 +89,7 @@ class SensorController(object):
     def interface_ids_start(self, cmd):
         logging.warn(cmd)
         res = Popen(cmd, shell=True)
+        return res
         if res.poll() != 0:
             return res
         else:
@@ -96,6 +98,7 @@ class SensorController(object):
     def interface_ips_start(self, cmd):
         logging.warn(cmd)
         res = Popen(cmd, shell=True)
+        return res
         if res.poll() != 0:
             return res
         else:
@@ -104,6 +107,7 @@ class SensorController(object):
     def deep_learn_ids_start(self, cmd):
         logging.warn(cmd)
         res = Popen(cmd, shell=True)
+        return res
         if res.poll() != 0:
             return res
         else:
