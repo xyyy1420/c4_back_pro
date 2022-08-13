@@ -1,12 +1,9 @@
-from hashlib import new
 import logging
 import os
-from threading import Thread
 from multiprocessing import Process
 import time
 
 from .log_deal.log_mode.snort_log import LogReceive
-from .log_deal.log_sender import log_sender
 from .file_mode.file_create import create_new_path
 from .sensor_control import SensorController
 from .predict.deep_learn_control import DeepLearnControl

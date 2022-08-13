@@ -10,7 +10,6 @@
 # print(x.config_info)
 # print(x.get_network_info())
 # print(x.get_ip_country())
-import time
 from multiprocessing import Process
 import logging
 from sensor.sensor_role import Sensor

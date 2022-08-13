@@ -4,15 +4,16 @@ import logging
 from ..snortunsock import alert
 import dpkt
 import time
-from threading import Thread
 from ..log_sender import log_sender
+from iptable import insert_rule, del_rule
 
 
 class LogReceive(object):
     def __init__(self, data) -> None:
 
+        self.data = data
         self.socket_file = data['sock_file']
-
+        self.reject_set = []
         self.protocol = {'1': "ICMP", '2': "IGMP", '3': "GGP",
                          '4': "IPv6", '5': "ST", '6': "TCP",
                          '7': "CBT", '8': "EGP", '9': "IGP",
@@ -220,6 +221,10 @@ class LogReceive(object):
                 #   'attack': 1
 
             }
+            if src_ip not in self.reject_set and self.data['mode'] == 'interface_ips':
+                insert_rule(src_ip)
+                self.reject_set.append(src_ip)
+
             log_sender(
                 url='http://124.220.161.182:8000/data/snort/', data=final_msg)
        #      logging.warn(final_msg)  # TODO:改为回送结果
