@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
 global process_pool
 
-process_poll = {}
+process_pool = {}
 
 
 class Sensor(object):
