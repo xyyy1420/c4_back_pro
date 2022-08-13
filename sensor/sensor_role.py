@@ -94,10 +94,10 @@ class Sensor(object):
         self.start()
 
     def stop(self):
-        self.sensor.stop_sensor(self.process_pool['sensor'])
+        self.sensor.stop_sensor(process_pool['sensor'])
         logging.info("sensor stop")
-        self.process_pool["log_pro"].terminate()
-        if self.process_pool['log_pro'].is_alive():
+        process_pool["log_pro"].terminate()
+        if process_pool['log_pro'].is_alive():
             logging.error("Log mode can not stop")
         else:
             logging.info("log mode stop")
