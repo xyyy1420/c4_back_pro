@@ -13,7 +13,7 @@ LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s -%(funcName)s"
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
-process_pool = {}
+global process_pool
 
 
 class Sensor(object):
