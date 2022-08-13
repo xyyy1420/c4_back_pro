@@ -53,6 +53,7 @@ class Sensor(object):
         if self.data['mode'] == 'deep_learn_ids':
             time.sleep(1)
             self.load_deep_learn()
+        logging.info(self.process_pool)
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):
