@@ -71,11 +71,11 @@ class SensorController(object):
             base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {rule_path}"
             self.control_hook.append(self.deep_learn_ids_start(base_cmd))
 
-        logging.error(self.control_hook)
+        # logging.error(self.control_hook)
         if self.control_hook == -1:
             return -1
         else:
-            return 1
+            return self.control_hook
 
     def pcap_ids_start(self, cmd):
         logging.warn(cmd)
@@ -116,7 +116,7 @@ class SensorController(object):
 
     # TODO:change mode to operate :(start,stop,update) need:(name,description,and other args)
 
-    def stop_sensor(self, **args):
+    def stop_sensor(self, res):
         # name = args['name']
         # description = args['description']
         # sensor_md5 = self.hash_cal(name+description)
@@ -133,8 +133,13 @@ class SensorController(object):
         #     print("error,thread not fount")
         #     return
 
-        self.control_hook[0].send_signal(self.shutdown_signal)
-        if self.control_hook[0].poll() != 0:
+        # self.control_hook[0].send_signal(self.shutdown_signal)
+        # if self.control_hook[0].poll() != 0:
+        #     return 1
+        # else:
+        #     return -1
+        res.send_signal(self.shutdown_signal)
+        if res.poll() != 0:
             return 1
         else:
             return -1
