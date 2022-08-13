@@ -13,6 +13,8 @@ LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s -%(funcName)s"
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
+process_pool = {}
+
 
 class Sensor(object):
     def __init__(self, data) -> None:
@@ -71,7 +73,7 @@ class Sensor(object):
             logging.error(f"Sensor start error , code:{res}")
         else:
             logging.info("Sensor start")
-            self.process_pool.update({"sensor": res})
+            process_pool.update({"sensor": res})
 
         # self.load_deep_learn()
 
@@ -83,7 +85,7 @@ class Sensor(object):
             logging.info("Log listener start")
         else:
             logging.error("Log listener start error")
-        self.process_pool.update({"log_pro": log_pro})
+        process_pool.update({"log_pro": log_pro})
         logging.info("Logging mode create , start listening...")
 
     def reload(self, data):
@@ -92,7 +94,7 @@ class Sensor(object):
         self.start()
 
     def stop(self):
-        # self.sensor.stop_sensor(self.process_pool['sensor'])
+        self.sensor.stop_sensor(self.process_pool['sensor'])
         logging.info("sensor stop")
         self.process_pool["log_pro"].terminate()
         if self.process_pool['log_pro'].is_alive():
