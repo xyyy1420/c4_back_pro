@@ -107,6 +107,7 @@ class SensorController(object):
     def deep_learn_ids_start(self, cmd):
         logging.warn(cmd)
         res = Popen(cmd, shell=True)
+        print(res.send_signal(self.shutdown_signal))
         return res
         if res.poll() != 0:
             return res
