@@ -5,7 +5,7 @@ from ..snortunsock import alert
 import dpkt
 import time
 from ..log_sender import log_sender
-from iptable import insert_rule, del_rule
+from .iptable import insert_rule, del_rule
 
 
 class LogReceive(object):
