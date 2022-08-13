@@ -68,9 +68,9 @@ class Sensor(object):
 
         if res == -1:
             logging.error(f"Sensor start error , code:{res}")
-            self.error_close()
         else:
             logging.info("Sensor start")
+            return res
 
         # self.load_deep_learn()
 
