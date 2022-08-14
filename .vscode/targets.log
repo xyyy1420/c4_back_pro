@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Aug 13 13:58:58 2022
+# Make data base, printed on Sun Aug 14 18:17:05 2022
 
 # Variables
 
@@ -85,7 +87,7 @@ MAKEFILE_LIST :=
 # environment
 PT8HOME = /opt/packettracer/
 # environment
-VSCODE_PID = 2746
+VSCODE_PID = 4207
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -93,7 +95,7 @@ XDG_SESSION_TYPE = x11
 # environment
 INPUT_METHOD = fcitx5
 # environment
-SESSION_MANAGER = local/jxyarch:@/tmp/.ICE-unix/1133,unix/jxyarch:/tmp/.ICE-unix/1133
+SESSION_MANAGER = local/jxyarch:@/tmp/.ICE-unix/1147,unix/jxyarch:/tmp/.ICE-unix/1147
 # automatic
 *F = $(notdir $*)
 # environment
@@ -133,7 +135,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 39bdfbe68ad7491cbc86bdfc40f16d73
+INVOCATION_ID = 824c24b5c36a4640aabe1359c4a91279
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -163,7 +165,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 1323
+SYSTEMD_EXEC_PID = 1317
 # environment
 AUTOJUMP_ERROR_PATH = /home/jxy/.local/share/autojump/errors.log
 # environment
@@ -179,13 +181,13 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 979
+MANAGERPID = 992
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:36880
+JOURNAL_STREAM = 8:11208
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -233,9 +235,9 @@ KDE_FULL_SESSION = true
 
 # Directories
 
-# . (device 38, inode 2512344): 20 files, no impossibilities.
+# . (device 38, inode 2512344): 21 files, no impossibilities.
 
-# 20 files, no impossibilities in 1 directories.
+# 21 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -282,18 +284,16 @@ GNUmakefile:
 # VPATH Search Paths
 
 # No 'vpath' search paths.
- 
-make: *** No rule to make target 'all'.  Stop.
-
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 277 B / avg = 9 B
-# current buf: size = 8162 B / used = 277 B / count = 28 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 29 / storage = 291 B / avg = 10 B
+ 
+# current buf: size = 8162 B / used = 291 B / count = 29 / avg = 10 B
 
-# strcache performance: lookups = 31 / hit rate = 9%
+# strcache performance: lookups = 32 / hit rate = 9%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=0/31=0%
-# Finished Make data base on Sat Aug 13 13:58:58 2022
+# Load=29/8192=0%, Rehash=0, Collisions=0/32=0%
+# Finished Make data base on Sun Aug 14 18:17:05 2022
 
  

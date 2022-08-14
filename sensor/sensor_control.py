@@ -143,12 +143,12 @@ class SensorController(object):
         else:
             return -1
 
-    def test_policy(self, policy_url):
-        rule_path = os.path.join(self.base_rule_path, policy_url)
-        local_cmd = self.test_cmd % (self.base_config_path, rule_path)
-        res = Popen(local_cmd, shell=True)
+    # def test_policy(self, policy_url):
+    #     rule_path = os.path.join(self.base_rule_path, policy_url)
+    #     local_cmd = self.test_cmd % (self.base_config_path, rule_path)
+    #     res = Popen(local_cmd, shell=True)
 
-        return res.poll()
+    #     return res.poll()
 
 
 # TODO：完成错误返回的部分，处理update与stop部分

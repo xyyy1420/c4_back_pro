@@ -57,7 +57,8 @@ class Sensor(object):
         if self.data['mode'] == 'deep_learn_ids':
             time.sleep(1)
             self.load_deep_learn()
-        logging.info(self.process_pool)
+        logging.info(process_pool)
+        return process_pool
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):
@@ -103,6 +104,10 @@ class Sensor(object):
             logging.error("Log mode can not stop")
         else:
             logging.info("log mode stop")
+
+        self.snort_log.cur.close()
+        self.snort_log.conn.close()
+
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()
         logging.warn("All controller stop")

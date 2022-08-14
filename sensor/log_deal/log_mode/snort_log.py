@@ -1,17 +1,22 @@
 import os
+from platform import freedesktop_os_release
 import socket
 import logging
+import sqlite3
 from ..snortunsock import alert
 import dpkt
 import time
 from ..log_sender import log_sender
 from .iptable import insert_rule, del_rule
+from ...ip_info import get_country
 
 
 class LogReceive(object):
     def __init__(self, data) -> None:
 
         self.data = data
+        self.conn = sqlite3.connect('ip_db.db')
+        self.cur = self.conn.cursor()
         self.socket_file = data['sock_file']
         self.reject_set = []
         self.protocol = {'1': "ICMP", '2': "IGMP", '3': "GGP",
@@ -195,6 +200,18 @@ class LogReceive(object):
             src_ip = dpkt.utils.inet_to_str(ip.src)
             dst_ip = dpkt.utils.inet_to_str(ip.dst)
 
+            cmd1 = f'''select * from ip_country where ip="{src_ip}"'''
+            country = ''
+            self.cur.execute(cmd1)
+            fet_res = self.cur.fetchall()
+            if fet_res == []:
+                country = get_country(src_ip)
+                self.cur.execute(
+                    f'''insert into ip_country values("{src_ip}","{country}")''')
+                self.conn.commit()
+            else:
+                country = fet_res[0][1]
+
             if ip.p != 6 or ip.p != 17:
                 dport = 0
                 sport = 0
@@ -217,7 +234,8 @@ class LogReceive(object):
                 'dst_port': dport,
                 'proto': self.protocol[str(ip.p)],
                 'date': rel_time,
-                'sensorId': id
+                'sensorId': id,
+                'country': country
                 #   'attack': 1
 
             }
