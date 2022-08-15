@@ -18,9 +18,9 @@ class LogReceive(object):
         self.conn = sqlite3.connect('ip_db.db')
         self.cur = self.conn.cursor()
         try:
-            self.cur.execute("create table ip_country(ip:TEXT,country:TEXT)")
+            self.cur.execute("create table ip_country(ip TEXT,country TEXT)")
         except:
-            pass
+            logging.info("db exists")
         self.socket_file = data['sock_file']
         self.reject_set = []
         self.protocol = {'1': "ICMP", '2': "IGMP", '3': "GGP",
@@ -169,7 +169,7 @@ class LogReceive(object):
             data = unsock.recv(BUFSIZE)
             parsed_msg = alert.AlertPkt.parser(data)
             if parsed_msg:
-                #target = Thread(target=self.get_msg, args=(parsed_msg))
+                # target = Thread(target=self.get_msg, args=(parsed_msg))
                 # target.start()
                 yield parsed_msg
         # if parsed_msg := alert.AlertPkt.parser(data):
