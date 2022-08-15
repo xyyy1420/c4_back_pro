@@ -175,7 +175,6 @@ class LogReceive(object):
         # yield parsed_msg
         for msg in self.recv_msg():
            #  for msg in snort_listener.start_recv(self.socket_file):
-            logging.info("start")
             buf = msg.pkt
             sig_id = msg.event.sig_id
             sig_rev = msg.event.sig_rev
@@ -239,7 +238,7 @@ class LogReceive(object):
                 'dst_addr': dst_ip,
                 'dst_port': dport,
                 'proto': self.protocol[str(ip.p)],
-                'date': rel_time,
+                'timestamp': rel_time,
                 'sensorId': id,
                 'country': country
                 #   'attack': 1
@@ -249,7 +248,6 @@ class LogReceive(object):
                 insert_rule(src_ip)
                 self.reject_set.append(src_ip)
 
-            logging.info(final_msg)
             log_sender(
                 url='http://124.220.161.182:8000/data/snort/', data=final_msg)
         #      logging.warn(final_msg)  # TODO:改为回送结果
