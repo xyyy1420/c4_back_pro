@@ -29,6 +29,8 @@ class LogReceive(object):
         self.classtype = {
             '1': {"name": 'not-suspicious', "priority": 3,
                   "text": 'Not Suspicious Traffic'},
+            '0': {"name": 'not-suspicious', "priority": 3,
+                  "text": 'Not Suspicious Traffic'},
 
             '2': {"name": 'unknown', "priority": 3,
                   "text": 'Unknown Traffic'},
