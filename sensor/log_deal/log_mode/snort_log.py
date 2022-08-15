@@ -209,7 +209,7 @@ class LogReceive(object):
             dst_ip = dpkt.utils.inet_to_str(ip.dst)
 
             cmd1 = f'''select * from ip_country where ip="{src_ip}"'''
-            country = ''
+            country = 'private'
             self.cur.execute(cmd1)
             fet_res = self.cur.fetchall()
             if fet_res == []:
