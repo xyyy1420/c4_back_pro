@@ -208,7 +208,6 @@ class LogReceive(object):
             country = ''
             self.cur.execute(cmd1)
             fet_res = self.cur.fetchall()
-            logging.info(f"{fet_res}")
             if fet_res == []:
                 country = get_country(src_ip)
                 self.cur.execute(
