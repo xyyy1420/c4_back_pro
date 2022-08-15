@@ -29,8 +29,9 @@ class LogReceive(object):
         self.classtype = {
             '1': {"name": 'not-suspicious', "priority": 3,
                   "text": 'Not Suspicious Traffic'},
-            '0': {"name": 'not-suspicious', "priority": 3,
-                  "text": 'Not Suspicious Traffic'},
+
+            '0': {"name": 'unknown-type', "priority": 3,
+                  "text": 'unknown'},
 
             '2': {"name": 'unknown', "priority": 3,
                   "text": 'Unknown Traffic'},
@@ -207,6 +208,7 @@ class LogReceive(object):
             country = ''
             self.cur.execute(cmd1)
             fet_res = self.cur.fetchall()
+            logging.info(f"{fet_res}")
             if fet_res == []:
                 country = get_country(src_ip)
                 self.cur.execute(
