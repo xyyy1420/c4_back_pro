@@ -62,7 +62,7 @@ class DataAnalysis(object):
                 # print(classes)
                 # logging.warn(info_dict)
                 log_sender(
-                    url='http://124.220.161.182:8000/data/deeplearn/', data=info_dict)
+                    url='http://127.0.0.1:8000/data/deeplearn/', data=info_dict)
                 # self.sender.send_data(info_dict)  # TODO:完成msg调试填入
 
                 # print(data_set_v[1],probs,classes)
