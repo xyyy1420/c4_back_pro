@@ -212,6 +212,7 @@ class LogReceive(object):
             country = 'private'
             self.cur.execute(cmd1)
             fet_res = self.cur.fetchall()
+            logging.info(fet_res, "coppppppppp")
             if fet_res == []:
                 country = get_country(src_ip)
                 self.cur.execute(
