@@ -1,4 +1,5 @@
 import requests
+import logging
 
 
 def get_country(ip):
@@ -9,6 +10,7 @@ def get_country(ip):
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36"}
     print(api_req)
     res = requests.get(url=api_req, headers=header)
+    logging.info(res)
     # print(dict(res.text))
     return res.text
 
