@@ -75,7 +75,7 @@ class SensorController(object):
         if self.control_hook == -1:
             return -1
         else:
-            return self.control_hook[0]
+            return self.control_hook
 
     def pcap_ids_start(self, cmd):
         logging.warn(cmd)
