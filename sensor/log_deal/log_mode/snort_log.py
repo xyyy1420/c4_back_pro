@@ -1,3 +1,4 @@
+from itertools import count
 import os
 import socket
 import logging
@@ -212,7 +213,6 @@ class LogReceive(object):
             country = 'private'
             self.cur.execute(cmd1)
             fet_res = self.cur.fetchall()
-            logging.info(fet_res, "coppppppppp")
             if fet_res == []:
                 country = get_country(src_ip)
                 self.cur.execute(
@@ -221,6 +221,7 @@ class LogReceive(object):
             else:
                 country = fet_res[0][1]
 
+            logging.info(country)
             if ip.p != 6 or ip.p != 17:
                 dport = 0
                 sport = 0
