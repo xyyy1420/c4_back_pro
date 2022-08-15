@@ -17,7 +17,7 @@ class LogReceive(object):
         self.data = data
         self.conn = sqlite3.connect('ip_db.db')
         self.cur = self.conn.cursor()
-        self.cur.execute("create table ip_country")
+        self.cur.execute("create table ip_country(ip:TEXT,country:TEXT)")
         self.socket_file = data['sock_file']
         self.reject_set = []
         self.protocol = {'1': "ICMP", '2': "IGMP", '3': "GGP",
