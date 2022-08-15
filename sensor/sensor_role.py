@@ -27,6 +27,7 @@ class Sensor(object):
         self.base_path = '/home/jxy/final_test/'
 
         self.data = data
+        self.data['id'] = str(self.data['id'])
         logging.info(f"sensor init from data: {self.data}")
         self.path = create_new_path(self.base_path, self.data['id'])
 
