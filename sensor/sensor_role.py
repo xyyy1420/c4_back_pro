@@ -31,7 +31,7 @@ class Sensor(object):
         self.path = create_new_path(self.base_path, self.data['id'])
 
         for i, v in self.path.items():
-            print(i, v)
+            logging.info(i, v)
             self.data.update({i: v})
             logging.info(f"data update key:{i},value:{v}")
         self.data.update({"sock_file": os.path.join(
