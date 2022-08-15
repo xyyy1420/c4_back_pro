@@ -8,7 +8,7 @@ import time
 from ..log_sender import log_sender
 from .iptable import insert_rule, del_rule
 from ...ip_info import get_country
-from snortunsock import snort_listener
+# from snortunsock import snort_listener
 
 
 class LogReceive(object):
