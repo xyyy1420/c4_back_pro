@@ -10,7 +10,6 @@ import logging
 
 from ...log_deal.log_sender import log_sender
 
-from data_sender.data_send import data_send
 # from msg_send.post_send import DataSend
 
 

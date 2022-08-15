@@ -1,5 +1,4 @@
 import os
-from platform import freedesktop_os_release
 import socket
 import logging
 import sqlite3
