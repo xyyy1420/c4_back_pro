@@ -8,6 +8,7 @@ import time
 from ..log_sender import log_sender
 from .iptable import insert_rule, del_rule
 from ...ip_info import get_country
+from snortunsock import snort_listener
 
 
 class LogReceive(object):
@@ -169,7 +170,8 @@ class LogReceive(object):
 
     def get_msg(self, id):
         # yield parsed_msg
-        for msg in self.recv_msg():
+        #  for msg in self.recv_msg():
+        for msg in snort_listener.start_recv(self.socket_file):
             buf = msg.pkt
             sig_id = msg.event.sig_id
             sig_rev = msg.event.sig_rev
@@ -244,4 +246,4 @@ class LogReceive(object):
 
             log_sender(
                 url='http://127.0.0.1:8000/data/snort/', data=final_msg)
-       #      logging.warn(final_msg)  # TODO:改为回送结果
+        #      logging.warn(final_msg)  # TODO:改为回送结果
