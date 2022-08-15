@@ -175,6 +175,7 @@ class LogReceive(object):
         # yield parsed_msg
        #  for msg in self.recv_msg():
         for msg in snort_listener.start_recv(self.socket_file):
+            logging.info("start")
             buf = msg.pkt
             sig_id = msg.event.sig_id
             sig_rev = msg.event.sig_rev
