@@ -1,3 +1,4 @@
+from asyncio.windows_utils import BUFSIZE
 import os
 import socket
 import logging
@@ -148,7 +149,8 @@ class LogReceive(object):
         logging.info("log receive create")
 
     def recv_msg(self):
-        BUFSIZE = alert.AlertPkt._ALERTPKT_SIZE
+       #  BUFSIZE = alert.AlertPkt._ALERTPKT_SIZE
+        BUFSIZE = 65870
         sockf = self.socket_file
         # DONE:需要设置这个每个log目录下的sock
 

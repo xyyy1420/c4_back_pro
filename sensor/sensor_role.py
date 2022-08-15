@@ -86,7 +86,7 @@ class Sensor(object):
 
     def load_log_deal(self):
         log_pro = Process(target=self.snort_log.get_msg,
-                          args=(str(self.data['id']),))
+                          args=(str(self.data['id'])))
         log_pro.start()
         if log_pro.is_alive():
             logging.info("Log listener start")
