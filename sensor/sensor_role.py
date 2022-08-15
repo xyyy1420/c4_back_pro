@@ -59,7 +59,7 @@ class Sensor(object):
             self.load_log_deal()
         self.load_sensor()
         if self.data['mode'] == 'deep_learn_ids':
-            time.sleep(1)
+            time.sleep(0.1)
             self.load_deep_learn()
         logging.info(process_pool)
         return process_pool
