@@ -246,6 +246,7 @@ class LogReceive(object):
                 insert_rule(src_ip)
                 self.reject_set.append(src_ip)
 
+            logging.info(final_msg)
             log_sender(
                 url='http://127.0.0.1:8000/data/snort/', data=final_msg)
         #      logging.warn(final_msg)  # TODO:改为回送结果
