@@ -221,7 +221,6 @@ class LogReceive(object):
             else:
                 country = fet_res[0][1]
 
-            logging.info(country)
             if ip.p != 6 or ip.p != 17:
                 dport = 0
                 sport = 0
