@@ -1,4 +1,3 @@
-from asyncio.windows_utils import BUFSIZE
 import os
 import socket
 import logging
