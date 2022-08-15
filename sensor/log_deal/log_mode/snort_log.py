@@ -2,13 +2,13 @@ import os
 import socket
 import logging
 import sqlite3
-from ..snortunsock import alert
+# from ..snortunsock import alert
 import dpkt
 import time
 from ..log_sender import log_sender
 from .iptable import insert_rule, del_rule
 from ...ip_info import get_country
-from snortunsock import snort_listener
+from snortunsock import alert
 
 
 class LogReceive(object):
@@ -173,8 +173,8 @@ class LogReceive(object):
 
     def get_msg(self, id):
         # yield parsed_msg
-       #  for msg in self.recv_msg():
-        for msg in snort_listener.start_recv(self.socket_file):
+        for msg in self.recv_msg():
+           #  for msg in snort_listener.start_recv(self.socket_file):
             logging.info("start")
             buf = msg.pkt
             sig_id = msg.event.sig_id
