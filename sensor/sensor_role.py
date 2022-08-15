@@ -2,7 +2,7 @@ import logging
 import os
 from multiprocessing import Process
 import time
-
+from shutil import copyfile
 from .log_deal.log_mode.snort_log import LogReceive
 from .file_mode.file_create import create_new_path
 from .sensor_control import SensorController
@@ -31,6 +31,7 @@ class Sensor(object):
         self.path = create_new_path(self.base_path, self.data['id'])
 
         for i, v in self.path.items():
+            print(i, v)
             self.data.update({i: v})
             logging.info(f"data update key:{i},value:{v}")
         self.data.update({"sock_file": os.path.join(
@@ -89,6 +90,7 @@ class Sensor(object):
         else:
             logging.error("Log listener start error")
         process_pool.update({"log_pro": log_pro})
+
         logging.info("Logging mode create , start listening...")
 
     def reload(self, data):
