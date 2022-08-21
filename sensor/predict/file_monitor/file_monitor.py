@@ -40,7 +40,8 @@ class FileEventHandler(FileSystemEventHandler):
             # cicflow=Process(target=run_cicflow,args=(file_name,"/home/xxx/flow_dir/"+output_name+".csv"))
             # cicflow.start()
 
-            run_cicflow(file_name, self.csv_path+output_name+".csv", self.id)
+            run_cicflow(
+                file_name, f"{self.csv_path}{output_name}.csv", self.id)
 
     def on_modified(self, event):
         if "pcap" in event.src_path:
@@ -50,13 +51,13 @@ class FileEventHandler(FileSystemEventHandler):
 def cicflow(input_path, output_path, id):
     logging.warn(input_path, output_path)
     with suppress_stdout_stderr():
-        res = subprocess.call(
+        res = subprocess.Popen(
             f"cicflowmeter -f {input_path} -c {output_path}", shell=True)
-    if res == 0:
-        logging.info("cicflow 文件数据统计完成")
-    else:
-        logging.error("cicflow error,文件数据未完成统计")
-        return
+    # if res == 0:
+    #     logging.info("cicflow 文件数据统计完成")
+    # else:
+    #     logging.error("cicflow error,文件数据未完成统计")
+    #     return
     run_analysis(input_path, output_path, id)
 
 
@@ -64,7 +65,6 @@ def run_cicflow(input_path, output_path, id):
     logging.info(f"file name {output_path}")
     cic = Process(target=cicflow, args=(input_path, output_path, id))
     cic.start()
-    cic.join()
 #    cic=Process(target=subprocess.call,args=(["cicflowmeter","-f",input_path,"-c",output_path]))
 #    cic.start()
 
