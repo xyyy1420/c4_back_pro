@@ -18,12 +18,9 @@ class FileEventHandler(FileSystemEventHandler):
         self.file_patt_rule = re.compile(file_pattern)
         self.act_file = None
         logging.info("file monitor create")
-    # 文件移动
-#    def on_moved(self, event):
-#        print("文件移动触发")
-#        print(event)
 
     def on_created(self, event):
+        logging.info("create")
         file_name = event.src_path
         # print(file_name, self.act_file)
         if file_name != self.act_file:
@@ -42,12 +39,8 @@ class FileEventHandler(FileSystemEventHandler):
             run_cicflow(file_name, self.csv_path+output_name+".csv", self.id)
 
     def on_modified(self, event):
-        logging.info("modified event")
         if "pcap" in event.src_path:
             self.act_file = event.src_path
-
-#        print("文件编辑触发")
-#        print(event)
 
 
 def cicflow(input_path, output_path, id):

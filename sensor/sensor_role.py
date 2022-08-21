@@ -9,7 +9,6 @@ from .sensor_control import SensorController
 from .predict.deep_learn_control import DeepLearnControl
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s -%(funcName)s"
-# fh = logging.FileHandler('./1.log')
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
