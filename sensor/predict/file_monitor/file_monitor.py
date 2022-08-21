@@ -27,7 +27,11 @@ class FileEventHandler(FileSystemEventHandler):
 
             logging.info(f"文件创建触发 {file_name}")
 
-            output_name = self.file_patt_rule.match(file_name)[1]
+            try:
+                output_name = self.file_patt_rule.match(file_name)[1]
+            except:
+                pass
+
             if output_name != None:
                 logging.info("文件名已分割"+output_name[1])
                 output_name = output_name[1]
