@@ -51,7 +51,7 @@ def cicflow(input_path, output_path, id):
     logging.warn(input_path, output_path)
     with suppress_stdout_stderr():
         res = subprocess.Popen(
-            f"cicflowmeter -f {input_path} -c {output_path}", shell=True)
+            cmd=f"cicflowmeter -f {input_path} -c {output_path}", shell=True)
     if res == 0:
         logging.info("cicflow 文件数据统计完成")
     else:
