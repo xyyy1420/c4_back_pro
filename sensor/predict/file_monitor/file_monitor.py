@@ -1,10 +1,5 @@
-from cmath import log
-from fileinput import filename
-import time
-import sys
 import logging
 import re
-import os
 
 import subprocess
 from watchdog.observers import Observer
