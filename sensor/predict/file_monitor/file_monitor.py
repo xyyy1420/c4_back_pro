@@ -1,3 +1,4 @@
+from cmath import log
 from fileinput import filename
 import time
 import sys
@@ -46,6 +47,7 @@ class FileEventHandler(FileSystemEventHandler):
             run_cicflow(file_name, self.csv_path+output_name+".csv", self.id)
 
     def on_modified(self, event):
+        logging.info("modified event")
         if "pcap" in event.src_path:
             self.act_file = event.src_path
 
