@@ -19,6 +19,7 @@ class DeepLearnControl():
 
     def start(self):
         self.observer.start()
+        logging.info(self.observer.is_alive())
         logging.info(f"file monitor start{self.aim_path}")
 
     def stop(self):
