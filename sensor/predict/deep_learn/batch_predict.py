@@ -44,7 +44,8 @@ class DataAnalysis(object):
 
     def run_module(self, pcap_path, id):
 
-        logging.info(f"{pcap_path}")
+        ppp = pcap_path
+        logging.info(f"ppp                       {ppp}")
         with torch.no_grad():
             #        for i,data in enumerate(test_loder):
             for data_set_v, data in zip(self.dataset.data_deal_set, self.test_loder):
@@ -57,7 +58,7 @@ class DataAnalysis(object):
                 probs, classes = torch.max(output, dim=1)
 
                 info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "Pcap_Path": pcap_path}
+                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "Pcap_Path": ppp}
 
                 logging.warn(info_dict)
                 log_sender(
