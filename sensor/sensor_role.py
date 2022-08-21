@@ -49,7 +49,8 @@ class Sensor(object):
 
         self.sensor = SensorController(self.data)
 
-        self.deep_learn_control = DeepLearnControl(self.data)
+        # self.deep_learn_control = DeepLearnControl(self.data)
+        self.deep_learn_control = None
 
         self.process_pool = {}
 
@@ -64,7 +65,7 @@ class Sensor(object):
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):
-        self.deep_learn_control.start()
+        self.deep_learn_control = DeepLearnControl(self.data)
 
     def load_sensor(self):
         res = self.sensor.start_sensor()

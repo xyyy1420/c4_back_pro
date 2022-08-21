@@ -14,10 +14,10 @@ class DeepLearnControl():
             self.aim_path, self.csv_path, self.id)
         self.observer = Observer()
         self.observer.schedule(self.file_monitor, self.aim_path, False)
-        return self.observer
+        self.observer.start()
 
-    # def start(self):
-    #     self.observer.start()
+    def start(self):
+        self.observer.start()
 
     def stop(self):
         self.observer.stop()
