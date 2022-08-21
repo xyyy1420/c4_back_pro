@@ -57,6 +57,7 @@ class DataAnalysis(object):
                 # predict = torch.softmax(output, dim=1)
                 probs, classes = torch.max(output, dim=1)
 
+                logging.info(f"ppp                       {ppp}")
                 info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
                              "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "Pcap_Path": ppp}
 
