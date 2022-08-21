@@ -55,11 +55,11 @@ def cicflow(input_path, output_path, id):
     res = subprocess.Popen(
         f"cicflowmeter -f {input_path} -c {output_path}", shell=True)
     res.wait()
-    if res == 0:
-        logging.info("cicflow 文件数据统计完成")
-    else:
-        logging.error(f"cicflow error,文件数据未完成统计 {res}")
-        return
+    # if res == 0:
+    #     logging.info("cicflow 文件数据统计完成")
+    # else:
+    #     logging.error(f"cicflow error,文件数据未完成统计 {res}")
+    #     return
     run_analysis(input_path, output_path, id)
 
 
