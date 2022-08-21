@@ -48,6 +48,7 @@ class FileEventHandler(FileSystemEventHandler):
 
 
 def cicflow(input_path, output_path, id):
+    logging.error(input_path, output_path)
     with suppress_stdout_stderr():
         res = subprocess.call(
             ["cicflowmeter", "-f", input_path, "-c", output_path])
