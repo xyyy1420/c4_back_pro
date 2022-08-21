@@ -56,19 +56,19 @@ class SensorController(object):
 
         if mode == 'pcap_ids':
             pcap_path = args['pcap_path']
-            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -r {pcap_path} -R {self.rule_file}"
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -r {pcap_path} -R {self.rule_file} -m 066"
             self.control_hook.append(self.pcap_ids_start(base_cmd))
 
         elif mode == 'interface_ids':
-            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file} -m 066"
             self.control_hook.append(self.interface_ids_start(base_cmd))
 
         elif mode == 'interface_ips':
-            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file}"
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {self.rule_file} -m 066"
             self.control_hook.append(self.interface_ips_start(base_cmd))
         elif mode == 'deep_learn_ids':
             rule_path = self.deep_learn_rule
-            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {rule_path}"
+            base_cmd = f"snort -c {self.base_config_path} -l {self.log_path} -i {interface} -R {rule_path} -m 066"
             self.control_hook.append(self.deep_learn_ids_start(base_cmd))
 
         # logging.error(self.control_hook)
