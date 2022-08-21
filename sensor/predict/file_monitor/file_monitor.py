@@ -50,6 +50,7 @@ class FileEventHandler(FileSystemEventHandler):
 
 def cicflow(input_path, output_path, id):
     logging.warn(input_path, output_path)
+    subprocess.Popen(f"touch {output_path}")
     with suppress_stdout_stderr():
         res = subprocess.Popen(
             f"cicflowmeter -f {input_path} -c {output_path}", shell=True)
