@@ -51,10 +51,10 @@ class FileEventHandler(FileSystemEventHandler):
 def cicflow(input_path, output_path, id):
     logging.warn(f"{input_path}, {output_path}")
     # subprocess.Popen(f"touch {output_path}", shell=True)
-    with suppress_stdout_stderr():
-        res = subprocess.Popen(
-            f"cicflowmeter -f {input_path} -c {output_path}", shell=True)
-        res.wait()
+    # with suppress_stdout_stderr():
+    res = subprocess.Popen(
+        f"cicflowmeter -f {input_path} -c {output_path}", shell=True)
+    res.wait()
     if res == 0:
         logging.info("cicflow 文件数据统计完成")
     else:
