@@ -17,7 +17,6 @@ class FileEventHandler(FileSystemEventHandler):
         file_pattern = r'.*[0-9]*\/log\/(.*)'
         self.file_patt_rule = re.compile(file_pattern)
         self.act_file = None
-        logging.info("file monitor create")
 
     def on_created(self, event):
         logging.info("create")

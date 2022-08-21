@@ -21,13 +21,10 @@ if __name__ == '__main__':
         'mode': 'deep_learn_ids',
         'interface': 'ens192',
 
-
-
     }
     role = Sensor(data)
     role1 = Process(target=role.start, args=())
     role1.start()
-    role1.join()
     logging.info("start")
     try:
         while 1:

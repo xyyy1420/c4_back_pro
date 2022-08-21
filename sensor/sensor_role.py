@@ -61,16 +61,10 @@ class Sensor(object):
             time.sleep(0.1)
             self.load_deep_learn()
         logging.info(process_pool)
-        return process_pool
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):
         self.deep_learn_control.start()
-        # if self.deep_learn_control.is_alive():
-        #     logging.info("DeepLearn mode start")
-        # else:
-        #     logging.error("DeepLearn mode start error")
-        # TODO：需要判断是否成功
 
     def load_sensor(self):
         res = self.sensor.start_sensor()
