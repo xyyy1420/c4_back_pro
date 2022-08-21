@@ -49,15 +49,15 @@ class Sensor(object):
 
         self.sensor = SensorController(self.data)
 
-        # self.deep_learn_control = DeepLearnControl(self.data)
-        self.deep_learn_control = None
+        self.deep_learn_control = DeepLearnControl(self.data)
+        # self.deep_learn_control = None
 
         self.process_pool = {}
 
     def start(self):
         if self.data['mode'] != 'deep_learn_ids':
             self.load_log_deal()
-        # self.load_sensor()
+        self.load_sensor()
         if self.data['mode'] == 'deep_learn_ids':
             time.sleep(0.1)
             res = Process(target=self.load_deep_learn, args=())
@@ -66,7 +66,7 @@ class Sensor(object):
         # DONE：需要判断是否成功
 
     def load_deep_learn(self):
-        self.deep_learn_control = DeepLearnControl(self.data)
+        self.deep_learn_control.start()
 
     def load_sensor(self):
         res = self.sensor.start_sensor()
