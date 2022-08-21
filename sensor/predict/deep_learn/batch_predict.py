@@ -44,6 +44,7 @@ class DataAnalysis(object):
 
     def run_module(self, pcap_path, id):
 
+        logging.info(f"{pcap_path}")
         with torch.no_grad():
             #        for i,data in enumerate(test_loder):
             for data_set_v, data in zip(self.dataset.data_deal_set, self.test_loder):
