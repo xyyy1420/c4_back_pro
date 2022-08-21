@@ -60,8 +60,7 @@ class Sensor(object):
         self.load_sensor()
         if self.data['mode'] == 'deep_learn_ids':
             time.sleep(0.1)
-            res = Process(target=self.load_deep_learn, args=())
-            res.start()
+            self.load_deep_learn()
         logging.info(process_pool)
         # DONE：需要判断是否成功
 
