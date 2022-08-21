@@ -30,7 +30,7 @@ class FileEventHandler(FileSystemEventHandler):
             try:
                 output_name = self.file_patt_rule.match(file_name)[1]
             except:
-                pass
+                return
 
             if output_name != None:
                 logging.info("文件名已分割"+output_name[1])
