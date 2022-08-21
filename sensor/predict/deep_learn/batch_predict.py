@@ -56,7 +56,7 @@ class DataAnalysis(object):
                 probs, classes = torch.max(output, dim=1)
 
                 info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "date": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "Pcap_Path": pcap_path}
+                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "Pcap_Path": pcap_path}
 
                 logging.warn(info_dict)
                 log_sender(

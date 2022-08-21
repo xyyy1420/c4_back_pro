@@ -78,7 +78,7 @@ def analysis(pcap_path, path, id):
     data = DataAnalysis(path)
     logging.info("数据分析.......")
  #   with suppress_stdout_stderr():
-
+    logging.info(pcap_path)
     data.run_module(pcap_path, id)
 
 
