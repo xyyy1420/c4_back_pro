@@ -57,7 +57,7 @@ class Sensor(object):
     def start(self):
         if self.data['mode'] != 'deep_learn_ids':
             self.load_log_deal()
-        self.load_sensor()
+        # self.load_sensor()
         if self.data['mode'] == 'deep_learn_ids':
             time.sleep(0.1)
             res = Process(target=self.load_deep_learn, args=())
