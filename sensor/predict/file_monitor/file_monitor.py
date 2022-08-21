@@ -44,13 +44,6 @@ class FileEventHandler(FileSystemEventHandler):
             # cicflow.start()
 
             run_cicflow(file_name, self.csv_path+output_name+".csv", self.id)
-        # print(file_name)
-
-
-#    def on_deleted(self, event):
-#        print("文件删除触发")
-#        print(event)
-#
 
     def on_modified(self, event):
         if "pcap" in event.src_path:
@@ -69,7 +62,7 @@ def cicflow(input_path, output_path, id):
     else:
         logging.error("cicflow error,文件数据未完成统计")
         return
-    run_analysis(output_path, id)
+    run_analysis(input_path, output_path, id)
 
 
 def run_cicflow(input_path, output_path, id):
@@ -83,17 +76,17 @@ def run_cicflow(input_path, output_path, id):
 
 # Done:在这里写关于运行cicflow的部分，使用subprocess库
 
-def analysis(path, id):
+def analysis(pcap_path, path, id):
     logging.info(path)
     data = DataAnalysis(path)
     logging.info("数据分析.......")
  #   with suppress_stdout_stderr():
 
-    data.run_module(id)
+    data.run_module(pcap_path, id)
 
 
-def run_analysis(path, id):
-    module = Process(target=analysis, args=(path, id))
+def run_analysis(pcap_path, path, id):
+    module = Process(target=analysis, args=(pcap_path, path, id))
     module.start()
     module.join()
 

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 15 13:05:18 2022
+# Make data base, printed on Sun Aug 21 14:41:52 2022
 
 # Variables
 
@@ -47,7 +47,7 @@ OLDPWD = /home/jxy
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/jxy/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
+VSCODE_CODE_CACHE_PATH = /home/jxy/.config/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
 # environment
 XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session1
 # environment
@@ -63,7 +63,7 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/jxy/workspace/snort_sec
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -87,7 +87,7 @@ MAKEFILE_LIST :=
 # environment
 PT8HOME = /opt/packettracer/
 # environment
-VSCODE_PID = 2564
+VSCODE_PID = 2627
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -105,7 +105,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
-VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"08bdb29c43b4c03defdaaecc51ad48b6.zh-cn","_translationsConfigFile":"/home/jxy/.config/Code/clp/08bdb29c43b4c03defdaaecc51ad48b6.zh-cn/tcf.json","_cacheRoot":"/home/jxy/.config/Code/clp/08bdb29c43b4c03defdaaecc51ad48b6.zh-cn","_resolvedLanguagePackCoreLocation":"/home/jxy/.config/Code/clp/08bdb29c43b4c03defdaaecc51ad48b6.zh-cn/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/jxy/.config/Code/clp/08bdb29c43b4c03defdaaecc51ad48b6.zh-cn/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_translationsConfigFile":"/home/jxy/.config/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/tcf.json","_cacheRoot":"/home/jxy/.config/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_resolvedLanguagePackCoreLocation":"/home/jxy/.config/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/e4503b30fc78200f846c62cf8091b76ff5547662","_corruptedFile":"/home/jxy/.config/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/corrupted.info","_languagePackSupport":true}
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -125,7 +125,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/jxy/.rvm/bin
+PATH = /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/jxy/.rvm/bin:/usr/lib/jvm/default/bin
 # default
 MAKEFILES := 
 # environment
@@ -135,7 +135,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = e03b810c27424d89919bc3be1d8d3238
+INVOCATION_ID = 0ed6b33ab5ce429fa0bb9fe22a055599
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -165,7 +165,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 1342
+SYSTEMD_EXEC_PID = 1345
 # environment
 AUTOJUMP_ERROR_PATH = /home/jxy/.local/share/autojump/errors.log
 # environment
@@ -181,13 +181,13 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 998
+MANAGERPID = 996
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:29672
+JOURNAL_STREAM = 8:23946
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -201,7 +201,7 @@ QT_IM_MODULE = fcitx5
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-17c62bbf-1.70.1-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-17c62bbf-1.70.2-main.sock
 # environment
 XDG_SESSION_ID = 2
 # environment
@@ -213,7 +213,7 @@ XCURSOR_SIZE = 24
 # default
 SUFFIXES := 
 # environment
-QT_AUTO_SCREEN_SCALE_FACTOR = 0
+QT_AUTO_SCREEN_SCALE_FACTOR = 1
 # environment
 VSCODE_CLI = 1
 # environment
@@ -286,14 +286,14 @@ GNUmakefile:
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
+ 
 
 # strcache buffers: 1 (0) / strings = 30 / storage = 300 B / avg = 10 B
 # current buf: size = 8162 B / used = 300 B / count = 30 / avg = 10 B
 
 # strcache performance: lookups = 33 / hit rate = 9%
 # hash-table stats:
- 
 # Load=30/8192=0%, Rehash=0, Collisions=0/33=0%
-# Finished Make data base on Mon Aug 15 13:05:18 2022
+# Finished Make data base on Sun Aug 21 14:41:52 2022
 
  

@@ -42,7 +42,7 @@ class DataAnalysis(object):
         self.model.eval()
         # batch_size = 8  # 每次预测时将多少张图片打包成一个batch
 
-    def run_module(self, id):
+    def run_module(self, pcap_path, id):
 
         with torch.no_grad():
             #        for i,data in enumerate(test_loder):
@@ -56,10 +56,9 @@ class DataAnalysis(object):
                 probs, classes = torch.max(output, dim=1)
 
                 info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "date": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id}
+                             "dst_port": data_set_v[4], "date": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "Pcap_Path": pcap_path}
 
-                # print(classes)
-                # logging.warn(info_dict)
+                logging.warn(info_dict)
                 log_sender(
                     url='http://127.0.0.1:8000/data/deeplearn/', data=info_dict)
                 # self.sender.send_data(info_dict)  # TODO:完成msg调试填入
