@@ -9,6 +9,7 @@ class DeepLearnControl():
         self.id = data['id']
         self.aim_path = data['log_path']
         self.csv_path = data['csv_path']
+
         self.file_monitor = FileEventHandler(
             self.aim_path, self.csv_path, self.id)
         self.observer = Observer()
@@ -18,7 +19,7 @@ class DeepLearnControl():
 
     def start(self):
         self.observer.start()
-        logging.info("file monitor start")
+        logging.info(f"file monitor start{self.aim_path}")
 
     def stop(self):
         self.observer.stop()
