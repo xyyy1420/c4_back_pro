@@ -34,7 +34,6 @@ class FileEventHandler(FileSystemEventHandler):
 
             if output_name != None:
                 logging.info("文件名已分割"+output_name)
-                output_name = output_name[1]
             else:
                 logging.info("文件名分割异常")
             # print(output_name)
