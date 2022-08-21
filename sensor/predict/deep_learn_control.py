@@ -21,6 +21,8 @@ class DeepLearnControl():
     def start(self):
         logging.info(self.observer)
         self.observer.start()
+        logging.info(self.observer)
+        logging.info("over")
 
     def stop(self):
         self.observer.stop()
