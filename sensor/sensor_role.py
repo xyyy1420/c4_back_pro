@@ -66,6 +66,8 @@ class Sensor(object):
 
     def load_deep_learn(self):
         self.deep_learn_control.start()
+        self.process_pool.update(
+            {"deep_learn_control": self.deep_learn_control})
 
     def load_sensor(self):
         res = self.sensor.start_sensor()
@@ -74,7 +76,7 @@ class Sensor(object):
             logging.error(f"Sensor start error , code:{res}")
         else:
             logging.info("Sensor start")
-            process_pool.update({"sensor": res})
+            self.process_pool.update({"sensor": res})
 
         # self.load_deep_learn()
 
@@ -86,7 +88,7 @@ class Sensor(object):
             logging.info("Log listener start")
         else:
             logging.error("Log listener start error")
-        process_pool.update({"log_pro": log_pro})
+        self.process_pool.update({"log_pro": log_pro})
 
         logging.info("Logging mode create , start listening...")
 
@@ -98,14 +100,11 @@ class Sensor(object):
     def stop(self):
         self.sensor.stop_sensor(process_pool['sensor'])
         logging.info("sensor stop")
-        process_pool["log_pro"].terminate()
+        self.process_pool["log_pro"].terminate()
         if process_pool['log_pro'].is_alive():
             logging.error("Log mode can not stop")
         else:
             logging.info("log mode stop")
-
-        self.snort_log.cur.close()
-        self.snort_log.conn.close()
 
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 21 14:41:52 2022
+# Make data base, printed on Mon Aug 22 14:28:56 2022
 
 # Variables
 
@@ -87,7 +87,7 @@ MAKEFILE_LIST :=
 # environment
 PT8HOME = /opt/packettracer/
 # environment
-VSCODE_PID = 2627
+VSCODE_PID = 2096
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -95,7 +95,7 @@ XDG_SESSION_TYPE = x11
 # environment
 INPUT_METHOD = fcitx5
 # environment
-SESSION_MANAGER = local/jxyarch:@/tmp/.ICE-unix/1146,unix/jxyarch:/tmp/.ICE-unix/1146
+SESSION_MANAGER = local/jxyarch:@/tmp/.ICE-unix/1140,unix/jxyarch:/tmp/.ICE-unix/1140
 # automatic
 *F = $(notdir $*)
 # environment
@@ -135,7 +135,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 0ed6b33ab5ce429fa0bb9fe22a055599
+INVOCATION_ID = 19de768968674a3ab507b3afcbaee255
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -165,7 +165,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 1345
+SYSTEMD_EXEC_PID = 1331
 # environment
 AUTOJUMP_ERROR_PATH = /home/jxy/.local/share/autojump/errors.log
 # environment
@@ -181,13 +181,13 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 996
+MANAGERPID = 986
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:23946
+JOURNAL_STREAM = 8:34919
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -235,9 +235,9 @@ KDE_FULL_SESSION = true
 
 # Directories
 
-# . (device 38, inode 2512344): 22 files, no impossibilities.
+# . (device 38, inode 2512344): 17 files, no impossibilities.
 
-# 22 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -286,14 +286,14 @@ GNUmakefile:
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
- 
 
-# strcache buffers: 1 (0) / strings = 30 / storage = 300 B / avg = 10 B
-# current buf: size = 8162 B / used = 300 B / count = 30 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 231 B / avg = 9 B
+# current buf: size = 8162 B / used = 231 B / count = 25 / avg = 9 B
 
-# strcache performance: lookups = 33 / hit rate = 9%
+# strcache performance: lookups = 28 / hit rate = 10%
 # hash-table stats:
-# Load=30/8192=0%, Rehash=0, Collisions=0/33=0%
-# Finished Make data base on Sun Aug 21 14:41:52 2022
+ 
+# Load=25/8192=0%, Rehash=0, Collisions=0/28=0%
+# Finished Make data base on Mon Aug 22 14:28:56 2022
 
  
