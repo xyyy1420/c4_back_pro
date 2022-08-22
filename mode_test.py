@@ -30,5 +30,5 @@ if __name__ == '__main__':
         while 1:
             pass
     except KeyboardInterrupt:
-        role.reload(pool, data)
+        role.reload(data)
     logging.info("stop")
