@@ -101,6 +101,7 @@ class Sensor(object):
 
     def stop(self, pool):
         self.process_pool = pool
+        logging.error(self.process_pool)
         self.sensor.stop_sensor(self.process_pool['sensor'])
         logging.info("sensor stop")
         self.process_pool["log_pro"].terminate()
