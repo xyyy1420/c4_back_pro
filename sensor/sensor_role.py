@@ -49,7 +49,7 @@ class Sensor(object):
 
         self.sensor = SensorController(self.data)
 
-        # self.deep_learn_control = DeepLearnControl(self.data)
+        self.deep_learn_control = DeepLearnControl(self.data)
         # self.deep_learn_control = None
 
         self.process_pool = {}
