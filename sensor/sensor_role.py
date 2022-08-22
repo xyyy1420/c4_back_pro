@@ -97,7 +97,10 @@ class Sensor(object):
     def reload(self, pool, data):
         self.stop(pool)
         self.data = self.merge_data(self.data, data)
-        self.start()
+        try:
+            self.start()
+        except:
+            pass
 
     def stop(self, pool):
         self.process_pool = pool
