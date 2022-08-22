@@ -14,7 +14,6 @@ class DeepLearnControl():
             self.aim_path, self.csv_path, self.id)
         self.observer = Observer()
         self.observer.schedule(self.file_monitor, self.aim_path, False)
-        self.observer.start()
 
     def start(self):
         self.observer.start()
