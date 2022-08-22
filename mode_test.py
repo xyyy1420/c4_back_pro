@@ -23,12 +23,12 @@ if __name__ == '__main__':
 
     }
     role = Sensor(data)
-    role1 = Process(target=role.start, args=())
-    role1.start()
+    # role1 = Process(target=role.start, args=())
+    pool = role.start()
     logging.info("start")
     try:
         while 1:
             pass
     except KeyboardInterrupt:
-        role.stop()
+        role.stop(pool)
     logging.info("stop")

@@ -99,7 +99,8 @@ class Sensor(object):
         self.data = self.merge_data(self.data, data)
         self.start()
 
-    def stop(self):
+    def stop(self, pool):
+        self.process_pool = pool
         self.sensor.stop_sensor(self.process_pool['sensor'])
         logging.info("sensor stop")
         self.process_pool["log_pro"].terminate()
