@@ -137,9 +137,9 @@ class SensorController(object):
         #     return 1
         # else:
         #     return -1
-        res.send_signal(self.shutdown_signal)
+        res[0].send_signal(self.shutdown_signal)
         logging("stop sensor----------------")
-        if res.poll() != 0:
+        if res[0].poll() != 0:
             return 1
         else:
             return -1
