@@ -29,8 +29,9 @@ class DataAnalysis(object):
         self.model = create_model(
             num_classes=2, has_logits=False).to(self.device)
 
-        weights_path = "sensor/predict/deep_learn/VIT_weights3.pth"
+        # weights_path = "sensor/predict/deep_learn/VIT_weights3.pth"
 
+        weights_path = "VIT_weights3.pth"
         assert os.path.exists(
             weights_path), f"file: '{weights_path}' dose not exist."
 
