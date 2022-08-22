@@ -114,13 +114,18 @@ class Sensor(object):
         except:
             logging.error("log_pro not stop---------")
 
+        try:
+            self.deep_learn_control.stop()
+            logging.error("deep_learn stop+++++++++++")
+        except:
+            logging.error("deep_learn stop error---------")
         # if self.process_pool['log_pro'].is_alive():
         #     logging.error("Log mode can not stop")
         # else:
         #     logging.info("log mode stop")
 
-        if self.data['mode'] == 'deep_learn_ids':
-            self.deep_learn_control.stop()
+        # if self.data['mode'] == 'deep_learn_ids':
+        #     self.deep_learn_control.stop()
         logging.warn("All controller stop")
 
     def delete(self):

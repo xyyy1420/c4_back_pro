@@ -20,7 +20,6 @@ class DeepLearnControl():
 
     def stop(self):
         self.observer.stop()
-        logging.error("file monitor stop")
     # TODO:完成stop的功能
 
         # TODO:完成deeplearn的实际测试
