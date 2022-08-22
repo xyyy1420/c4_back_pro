@@ -94,8 +94,8 @@ class Sensor(object):
 
         logging.info("Logging mode create , start listening...")
 
-    def reload(self, data):
-        self.stop()
+    def reload(self, pool, data):
+        self.stop(pool)
         self.data = self.merge_data(self.data, data)
         self.start()
 
