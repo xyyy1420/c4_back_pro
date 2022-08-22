@@ -102,13 +102,22 @@ class Sensor(object):
     def stop(self, pool):
         self.process_pool = pool
         logging.error(self.process_pool)
-        self.sensor.stop_sensor(self.process_pool['sensor'])
-        logging.info("sensor stop")
-        self.process_pool["log_pro"].terminate()
-        if self.process_pool['log_pro'].is_alive():
-            logging.error("Log mode can not stop")
-        else:
-            logging.info("log mode stop")
+        try:
+            self.sensor.stop_sensor(self.process_pool['sensor'])
+            logging.info("sensor stop+++++++++++")
+        except:
+            logging.error("sensor not stop-----------")
+
+        try:
+            self.process_pool["log_pro"].terminate()
+            logging.info("log pro stop++++++++++")
+        except:
+            logging.error("log_pro not stop---------")
+
+        # if self.process_pool['log_pro'].is_alive():
+        #     logging.error("Log mode can not stop")
+        # else:
+        #     logging.info("log mode stop")
 
         if self.data['mode'] == 'deep_learn_ids':
             self.deep_learn_control.stop()
