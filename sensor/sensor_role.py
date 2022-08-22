@@ -7,7 +7,7 @@ from .log_deal.log_mode.snort_log import LogReceive
 from .file_mode.file_create import create_new_path
 from .sensor_control import SensorController
 from .predict.deep_learn_control import DeepLearnControl
-from log_deal.log_sender import log_sender
+from .log_deal.log_sender import log_sender
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s -%(funcName)s"
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
