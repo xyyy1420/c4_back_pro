@@ -1,4 +1,5 @@
 # from system_info import SystemInfo
+import time
 
 # x=SystemInfo()
 
@@ -28,7 +29,7 @@ if __name__ == '__main__':
     logging.info("start")
     try:
         while 1:
-            pass
+            time.sleep(1)
     except KeyboardInterrupt:
-        role.reload(pool, data)
+        role.stop(pool)
     logging.info("stop")
