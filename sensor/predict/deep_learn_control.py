@@ -19,7 +19,9 @@ class DeepLearnControl():
         self.observer.start()
 
     def stop(self):
-        self.observer.stop()
+        # self.observer.terminate()
+        self.observer.on_thread_stop()
+
     # TODO:完成stop的功能
 
         # TODO:完成deeplearn的实际测试

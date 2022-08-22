@@ -49,7 +49,7 @@ class Sensor(object):
 
         self.sensor = SensorController(self.data)
 
-        self.deep_learn_control = DeepLearnControl(self.data)
+        # self.deep_learn_control = DeepLearnControl(self.data)
         # self.deep_learn_control = None
 
         self.process_pool = {}
@@ -116,7 +116,7 @@ class Sensor(object):
 
         try:
             self.deep_learn_control.stop()
-            logging.error("deep_learn stop+++++++++++")
+            logging.info("deep_learn stop+++++++++++")
         except:
             logging.error("deep_learn stop error---------")
         # if self.process_pool['log_pro'].is_alive():
