@@ -7,6 +7,7 @@ from .vit_model import vit_base_patch16_224_in21k as create_model
 import sys
 import json
 import logging
+import re
 
 from ...log_deal.log_sender import log_sender
 
@@ -43,9 +44,7 @@ class DataAnalysis(object):
         # batch_size = 8  # 每次预测时将多少张图片打包成一个batch
 
     def run_module(self, pcap_path, id):
-
         ppp = pcap_path
-        logging.info(f"ppp                       {ppp}")
         with torch.no_grad():
             #        for i,data in enumerate(test_loder):
             for data_set_v, data in zip(self.dataset.data_deal_set, self.test_loder):
@@ -57,9 +56,12 @@ class DataAnalysis(object):
                 # predict = torch.softmax(output, dim=1)
                 probs, classes = torch.max(output, dim=1)
 
-                logging.info(f"ppp                       {ppp}")
+                timestamp = data_set_v[6]
+                day = re.findall('[0-9]{4}-[0-9]{2}-[0-9]{2}', timestamp)
+                date = day[0]
+
                 info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "pcapPath": f"{ppp}"}
+                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "pcapPath": f"{ppp}", "date": date}
 
                 logging.warn(info_dict)
                 log_sender(

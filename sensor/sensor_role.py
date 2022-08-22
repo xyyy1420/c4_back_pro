@@ -7,7 +7,7 @@ from .log_deal.log_mode.snort_log import LogReceive
 from .file_mode.file_create import create_new_path
 from .sensor_control import SensorController
 from .predict.deep_learn_control import DeepLearnControl
-
+from log_deal.log_sender import log_sender
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s -%(funcName)s"
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
@@ -129,6 +129,8 @@ class Sensor(object):
 
         # if self.data['mode'] == 'deep_learn_ids':
         #     self.deep_learn_control.stop()
+        log_sender(url='http://124.220.161.182:8000/api/PcapStatusCallBack',
+                   data={"sensorId": self.data['id']})
         logging.warn("All controller stop")
 
     def delete(self):

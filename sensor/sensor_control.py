@@ -1,6 +1,7 @@
 import os
 from subprocess import Popen
 import logging
+from log_deal.log_sender import log_sender
 
 
 class SensorController(object):
@@ -80,6 +81,12 @@ class SensorController(object):
     def pcap_ids_start(self, cmd):
         logging.warn(cmd)
         res = Popen(cmd, shell=True)
+
+        while(res.poll()):
+            pass
+
+        log_sender(url="http://124.220.161.182:8000/api/PcapStatusCallBack", data={
+                   "sendorId": self.data['id']})
         return res
         if res.poll() != 0:
             return res

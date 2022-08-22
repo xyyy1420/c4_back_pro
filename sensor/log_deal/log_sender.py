@@ -6,5 +6,8 @@ req = None
 
 def log_sender(data, url):
     url = url
-    req = requests.post(url=url, data=data)
+    try:
+        req = requests.post(url=url, data=data)
+    except:
+        logging.error(f"not send=========={data}")
     logging.warn(req.text)

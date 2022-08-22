@@ -10,6 +10,7 @@ from ..log_sender import log_sender
 from .iptable import insert_rule, del_rule
 from ...ip_info import get_country
 from snortunsock import alert
+import re
 
 
 class LogReceive(object):
@@ -230,6 +231,8 @@ class LogReceive(object):
 
             rel_time = time.strftime("%Y-%m-%d-%X")
 
+            day = re.findall('[0-9]{4}-[0-9]{2}-[0-9]{2}', rel_time)
+
             final_msg = {
                 'msg': alert_message,
                 'sid': sig_id,
@@ -244,7 +247,8 @@ class LogReceive(object):
                 'proto': self.protocol[str(ip.p)],
                 'timestamp': rel_time,
                 'sensorId': id,
-                'country': country
+                'country': country,
+                'date': day[0]
                 #   'attack': 1
 
             }
