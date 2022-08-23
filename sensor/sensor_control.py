@@ -1,7 +1,7 @@
 import os
 from subprocess import Popen
 import logging
-from log_deal.log_sender import log_sender
+from .log_deal.log_sender import log_sender
 
 
 class SensorController(object):
