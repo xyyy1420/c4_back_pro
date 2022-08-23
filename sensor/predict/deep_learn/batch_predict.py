@@ -4090,7 +4090,7 @@ class DataAnalysis(object):
                              "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(),
                              'sensorId': id, "pcapPath": f"{ppp}", "date": date, 'country': status[0][1], 'city': status[0][2],
                              'latitude': status[0][3],
-                             'longitude': status[0][4t ]}
+                             'longitude': status[0][4]}
 
                 logging.warn(info_dict)
                 log_sender(
