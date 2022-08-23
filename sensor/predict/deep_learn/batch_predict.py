@@ -4088,9 +4088,9 @@ class DataAnalysis(object):
 
                 info_dict = {"src_addr": src_ip, "dst_addr": data_set_v[2], "src_port": data_set_v[3],
                              "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(),
-                             'sensorId': id, "pcapPath": f"{ppp}", "date": date, 'country': status['country'], 'city': status['city'],
-                             'latitude': status['latitude'],
-                             'longitude': status['longitude']}
+                             'sensorId': id, "pcapPath": f"{ppp}", "date": date, 'country': status[0][1], 'city': status[0][2],
+                             'latitude': status[0][3],
+                             'longitude': status[0][4t ]}
 
                 logging.warn(info_dict)
                 log_sender(
