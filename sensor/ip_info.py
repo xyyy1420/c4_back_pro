@@ -46,6 +46,7 @@ def select_sql(ip):
         cur.execute(f'''select * from ip_country where ip="{ip}"''')
     except:
         pass
+    conn.commit()
     res = cur.fetchall()
     if res == []:
         return (False, res)

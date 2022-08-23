@@ -229,7 +229,7 @@ class LogReceive(object):
             else:
                 info = get_ip_info(src_ip)
                 insert_sql(info)
-                status = info
+                res, status = select_sql(src_ip)
 
             if ip.p != 6 or ip.p != 17:
                 dport = 0

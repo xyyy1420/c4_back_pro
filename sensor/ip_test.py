@@ -8,4 +8,4 @@ else:
     info = ip_info.get_ip_info("122.228.135.213")
     ip_info.insert_sql(info)
     status = info
-print(status)
+print(status[0][1])
