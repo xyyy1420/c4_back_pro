@@ -31,7 +31,7 @@ class DataAnalysis(object):
 
         # weights_path = "sensor/predict/deep_learn/VIT_weights3.pth"
 
-        weights_path = "VIT_weights3.pth"
+        weights_path = "/home/jxy/c4_back_pro/sensor/predict/deep_learn/VIT_weights3.pth"
         assert os.path.exists(
             weights_path), f"file: '{weights_path}' dose not exist."
 
