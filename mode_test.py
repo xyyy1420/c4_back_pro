@@ -19,7 +19,7 @@ if __name__ == '__main__':
     data = {
         'id': '10000002',
         'rule_file': '/usr/local/snort/rules/local.rules',
-        'mode': 'deep_learn_ids',
+        'mode': 'interface_ids',
         'interface': 'ens192',
 
     }
@@ -32,5 +32,5 @@ if __name__ == '__main__':
             time.sleep(1)
     except KeyboardInterrupt:
         role.stop(pool)
-        role.reload(pool, data)
+        # role.reload(pool, data)
     logging.info("stop")
