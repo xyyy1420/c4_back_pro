@@ -256,10 +256,10 @@ class LogReceive(object):
                 'proto': self.protocol[str(ip.p)],
                 'timestamp': rel_time,
                 'sensorId': id,
-                'country': status['country'],
-                'city': status['city'],
-                'latitude': status['latitude'],
-                'longitude': status['longitude'],
+                'country': status[0][1],
+                'city': status[0][2],
+                'latitude': status[0][3],
+                'longitude': status[0][4],
                 'date': day[0]
                 #   'attack': 1
 
