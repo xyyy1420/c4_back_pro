@@ -231,7 +231,7 @@ class LogReceive(object):
                 insert_sql(info)
                 res, status = select_sql(src_ip)
             if status == []:
-                status = [('unknown', 'unknown', 'unknown', 'unknown')]
+                status = [(src_ip, 'unknown', 'unknown', 'unknown', 'unknown')]
 
             logging.info(status)
             if ip.p != 6 or ip.p != 17:
