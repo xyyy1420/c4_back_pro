@@ -33,7 +33,8 @@ def insert_sql(info):
     cur = conn.cursor()
     try:
         cur.execute(
-            f'''insert into ip_country values("{info['ip']}","{info['country']}","{info['city']}","{info['latitude']}","{info['longitude']}")''')
+            # f'''insert into ip_country values("{info['ip']}","{info['country']}","{info['city']}","{info['latitude']}","{info['longitude']}")''')
+            f'''insert into ip_country values("{info['query']}","{info['country']}","{info['city']}","{info['lat']}","{info['lon']}")''')
     except:
         pass
     conn.commit()
@@ -56,6 +57,7 @@ def select_sql(ip):
 
 def get_ip_info(ip):
     url = f'https://ipapi.co/{ip}/json/'
+    url = f'http://ip-api.com/json/{ip}?lang=zh-CN'
     header = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36"}
     res = requests.get(url=url, headers=header)

@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug 23 14:18:35 2022
+# Make data base, printed on Tue Aug 23 20:57:53 2022
 
 # Variables
 
@@ -123,7 +125,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/jxy/.rvm/bin:/usr/lib/jvm/default/bin
+PATH = /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/jxy/.rvm/bin
 # default
 MAKEFILES := 
 # environment
@@ -211,7 +213,7 @@ XCURSOR_SIZE = 24
 # default
 SUFFIXES := 
 # environment
-QT_AUTO_SCREEN_SCALE_FACTOR = 1
+QT_AUTO_SCREEN_SCALE_FACTOR = 0
 # environment
 VSCODE_CLI = 1
 # environment
@@ -280,6 +282,7 @@ GNUmakefile:
 # files hash-table stats:
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
+ 
 
 # No 'vpath' search paths.
 
@@ -287,13 +290,10 @@ GNUmakefile:
 
 # strcache buffers: 1 (0) / strings = 25 / storage = 231 B / avg = 9 B
 # current buf: size = 8162 B / used = 231 B / count = 25 / avg = 9 B
- 
-make: *** No rule to make target 'all'.  Stop.
-
 
 # strcache performance: lookups = 28 / hit rate = 10%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=0/28=0%
-# Finished Make data base on Tue Aug 23 14:18:35 2022
+# Finished Make data base on Tue Aug 23 20:57:53 2022
 
  
