@@ -19,7 +19,7 @@ if __name__ == '__main__':
     data = {
         'id': '10000002',
         'rule_file': '/usr/local/snort/rules/local.rules',
-        'mode': 'interface_ids',
+        'mode': 'deep_learn_ids',
         'interface': 'ens192',
 
     }
