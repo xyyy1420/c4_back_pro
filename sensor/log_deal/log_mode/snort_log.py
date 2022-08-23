@@ -11,6 +11,7 @@ from .iptable import insert_rule, del_rule
 from ...ip_info import create_sql, insert_sql, select_sql, get_ip_info
 from snortunsock import alert
 import re
+import random
 
 
 class LogReceive(object):
@@ -224,6 +225,9 @@ class LogReceive(object):
        #          country = fet_res[0][1]
 
             src_ip = '122.228.135.213'
+            src_ip_rand = ["39.175.67.28", "223.71.195.72", "47.100.255.35", "60.187.69.57", "47.95.199.44", "47.101.129.140", "171.92.21.168", "112.244.244.64", "171.92.21.182", "116.21.120.226", "171.92.21.154", "183.173.160.96",
+                           "203.95.198.118", "61.145.1.181	", "183.172.217.109", "183.21.81.162", "111.225.153.37", "183.245.6.32", "218.89.211.89", "223.94.85.131", "221.131.158.246", "218.64.163.226", "58.220.95.116", "36.137.23.49", "171.92.21.230"]
+            src_ip = random.choice(src_ip_rand)
             res, status = select_sql(src_ip)
             if res:
                 pass
