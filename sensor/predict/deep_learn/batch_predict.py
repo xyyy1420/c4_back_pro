@@ -68,7 +68,10 @@ class DataAnalysis(object):
                 else:
                     info = get_ip_info(data_set_v[4])
                     insert_sql(info)
-                    status = info
+                    res, status = select_sql(data_set_v[1])
+                if status == []:
+                    status = [(data_set_v[1], 'unknown',
+                               'unknown', 'unknown', 'unknown')]
 
                 info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
                              "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(),

@@ -10,4 +10,7 @@ def log_sender(data, url):
         req = requests.post(url=url, data=data)
     except:
         logging.error(f"not send=========={data}")
-    logging.warn(req.text)
+    try:
+        logging.warn(req.text)
+    except:
+        pass

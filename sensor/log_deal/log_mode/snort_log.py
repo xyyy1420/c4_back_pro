@@ -223,6 +223,7 @@ class LogReceive(object):
        #      else:
        #          country = fet_res[0][1]
 
+            src_ip = '122.228.135.213'
             res, status = select_sql(src_ip)
             if res:
                 pass
