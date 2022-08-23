@@ -68,8 +68,8 @@ def get_ip_info(ip):
     return res
 
 
-if __name__ == "__main__":
-    get_ip_info("60.12.58.71")
+# if __name__ == "__main__":
+#     get_ip_info("60.12.58.71")
 
     # import sqlite3
     # from typing import Counter
