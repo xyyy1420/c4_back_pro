@@ -8,7 +8,7 @@ import sys
 import json
 import logging
 import re
-
+from ...ip_info import create_sql, insert_sql, select_sql, get_ip_info
 from ...log_deal.log_sender import log_sender
 
 # from msg_send.post_send import DataSend
@@ -42,6 +42,8 @@ class DataAnalysis(object):
 
         # prediction
         self.model.eval()
+
+        create_sql()
         # batch_size = 8  # 每次预测时将多少张图片打包成一个batch
 
     def run_module(self, pcap_path, id):
@@ -60,9 +62,19 @@ class DataAnalysis(object):
                 timestamp = data_set_v[6]
                 day = re.findall('[0-9]{4}-[0-9]{2}-[0-9]{2}', timestamp)
                 date = day[0]
+                res, status = select_sql(data_set_v[1])
+                if res:
+                    pass
+                else:
+                    info = get_ip_info(data_set_v[4])
+                    insert_sql(info)
+                    status = info
 
                 info_dict = {"src_addr": data_set_v[1], "dst_addr": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(), 'sensorId': id, "pcapPath": f"{ppp}", "date": date}
+                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(),
+                             'sensorId': id, "pcapPath": f"{ppp}", "date": date, 'country': status['country'], 'city': status['city'],
+                             'latitude': status['latitude'],
+                             'longitude': status['longitude']}
 
                 logging.warn(info_dict)
                 log_sender(
