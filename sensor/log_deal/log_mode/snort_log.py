@@ -212,7 +212,7 @@ class LogReceive(object):
             try:
               src_ip = dpkt.utils.inet_to_str(ip.src)
             except:
-              logging.error("bytes object has not attritube str")
+              logging.error("bytes object has not attritube strt ")
               return
             dst_ip = dpkt.utils.inet_to_str(ip.dst)
 
