@@ -213,7 +213,7 @@ class LogReceive(object):
               src_ip = dpkt.utils.inet_to_str(ip.src)
             except:
               logging.error("bytes object has not attritube strt ")
-              return
+              continue
             dst_ip = dpkt.utils.inet_to_str(ip.dst)
 
        #      cmd1 = f'''select * from ip_country where ip="{src_ip}"'''
