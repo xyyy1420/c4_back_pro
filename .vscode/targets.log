@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug 23 20:57:53 2022
+# Make data base, printed on Wed Aug 24 14:52:54 2022
 
 # Variables
 
@@ -87,7 +87,7 @@ MAKEFILE_LIST :=
 # environment
 PT8HOME = /opt/packettracer/
 # environment
-VSCODE_PID = 2483
+VSCODE_PID = 4645
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -95,7 +95,7 @@ XDG_SESSION_TYPE = x11
 # environment
 INPUT_METHOD = fcitx5
 # environment
-SESSION_MANAGER = local/jxyarch:@/tmp/.ICE-unix/1164,unix/jxyarch:/tmp/.ICE-unix/1164
+SESSION_MANAGER = local/jxyarch:@/tmp/.ICE-unix/1135,unix/jxyarch:/tmp/.ICE-unix/1135
 # automatic
 *F = $(notdir $*)
 # environment
@@ -125,7 +125,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/jxy/.rvm/bin
+PATH = /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/jxy/.rvm/bin:/usr/lib/jvm/default/bin
 # default
 MAKEFILES := 
 # environment
@@ -135,7 +135,7 @@ MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 1a11a70643e6494095c2d995c7042d19
+INVOCATION_ID = b8875072669845f78da3a8abf866a586
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -165,7 +165,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 1360
+SYSTEMD_EXEC_PID = 1335
 # environment
 AUTOJUMP_ERROR_PATH = /home/jxy/.local/share/autojump/errors.log
 # environment
@@ -181,13 +181,13 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-MANAGERPID = 1004
+MANAGERPID = 987
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:18856
+JOURNAL_STREAM = 8:19379
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -213,7 +213,7 @@ XCURSOR_SIZE = 24
 # default
 SUFFIXES := 
 # environment
-QT_AUTO_SCREEN_SCALE_FACTOR = 0
+QT_AUTO_SCREEN_SCALE_FACTOR = 1
 # environment
 VSCODE_CLI = 1
 # environment
@@ -282,18 +282,18 @@ GNUmakefile:
 # files hash-table stats:
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
- 
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
 # strcache buffers: 1 (0) / strings = 25 / storage = 231 B / avg = 9 B
+ 
 # current buf: size = 8162 B / used = 231 B / count = 25 / avg = 9 B
 
 # strcache performance: lookups = 28 / hit rate = 10%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=0/28=0%
-# Finished Make data base on Tue Aug 23 20:57:53 2022
+# Finished Make data base on Wed Aug 24 14:52:54 2022
 
  
