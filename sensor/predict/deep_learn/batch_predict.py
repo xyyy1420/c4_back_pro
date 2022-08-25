@@ -10067,11 +10067,18 @@ class DataAnalysis(object):
                     status = [(src_ip, 'unknown',
                                'unknown', 'unknown', 'unknown')]
 
-                info_dict = {"src_addr": src_ip, "dst_addr": data_set_v[2], "src_port": data_set_v[3],
-                             "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(),
-                             'sensorId': id, "pcapPath": f"{ppp}", "date": date, 'country': status[0][1], 'city': status[0][2],
-                             'latitude': status[0][3],
-                             'longitude': status[0][4]}
+                try:
+                    info_dict = {"src_addr": src_ip, "dst_addr": data_set_v[2], "src_port": data_set_v[3],
+                                 "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(),
+                                 'sensorId': id, "pcapPath": f"{ppp}", "date": date, 'country': status[0][1], 'city': status[0][2],
+                                 'latitude': status[0][3],
+                                 'longitude': status[0][4]}
+                except:
+                    info_dict = {"src_addr": src_ip, "dst_addr": data_set_v[2], "src_port": data_set_v[3],
+                                 "dst_port": data_set_v[4], "timestamp": data_set_v[6], "is_attack": classes[0].item(),
+                                 'sensorId': id, "pcapPath": f"{ppp}", "date": date, 'country': "unknown", 'city': 'unknown',
+                                 'latitude': 'unknown',
+                                 'longitude': 'unknown'}
 
                 logging.warn(info_dict)
                 log_sender(
