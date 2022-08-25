@@ -17,7 +17,7 @@ from sensor.sensor_role import Sensor
 
 if __name__ == '__main__':
     data = {
-        'id': '10000002',
+        'id': '10000003',
         'rule_file': '/usr/local/snort/rules/local.rules',
         # 'mode': 'interface_ids',
         'mode': 'deep_learn_ids',
